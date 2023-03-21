@@ -1,0 +1,27 @@
+{
+  "name": "alumnnect",
+  "version": "1.0.0",
+  "description": "Alumnnect is a platform to connect to your alumni and get the latest updates about your college.",
+  "main": "server.js",
+  "author": "mr_optimizer",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.0",
+    "nodemailer": "^6.9.1",
+    "validator": "^13.9.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "export NODE_ENV=DEVELOPMENT&&nodemon backend/server",
+    "prod": "export NODE_ENV=PRODUCTION&&nodemon backend/server"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
