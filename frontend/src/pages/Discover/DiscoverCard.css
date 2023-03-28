@@ -1,0 +1,76 @@
+.discover__card{
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-radius: .2rem;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.discover__card__infos{
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: first baseline;
+}
+
+.discover__card__infos__name{
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.discover__card__infos--branch__sem{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.discover__card__infos--branch{
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.discover__card__infos--sem{
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+}
+.discover__card__skills{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.discover__card__social{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.discover__card__social__public{
+    display: flex;
+    gap: 1rem;
+}
+
+.discover__card__social__public--icons{
+    cursor: pointer;
+}
+
+.discover__card__social__private--message{
+    padding: .3rem .8rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+    border-radius: 10rem;
+}
+
+.small{
+    font-size: .6rem;
+}

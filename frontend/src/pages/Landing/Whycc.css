@@ -1,0 +1,59 @@
+.whycc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 8rem;
+    /* background-color: rgb(227, 29, 29); */
+}
+
+.whycc__para{
+    margin-top: -1.5rem;
+    width: 60vw;
+    padding: 3.2rem 4rem 2.4rem 4rem;
+    text-align: justify;
+    color: azure;
+    font-size: 1.5rem;
+    border-radius: .4rem;
+    background-color: rgb(63, 63, 63);
+}
+
+.whycc__figures{
+    z-index: 12;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 1.5rem;
+    width: 40vw;
+    padding: 1.4rem 4rem 2.2rem 4rem;
+    text-align: justify;
+    color: azure;
+    font-size: 3rem;
+    font-weight: 700;
+    border-radius: .4rem;
+    background-color: rgb(149, 149, 149);
+}
+
+.whycc__figures-fig{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fig-title{
+    font-size: 1.5rem;
+}
+
+.value-unit{
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.cont{
+    display: flex;
+    /* justify-content: center; */
+    align-items: baseline;
+}

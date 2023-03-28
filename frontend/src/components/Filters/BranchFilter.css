@@ -1,0 +1,16 @@
+.branchfilter{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* border: 1px solid black; */
+    border-bottom: 3px solid rgb(159, 159, 159);
+    border-radius: .2rem;
+}
+
+.branchList{
+    display: flex;
+    gap: .2rem;
+    flex-direction: column;
+    align-items: flex-start;
+}

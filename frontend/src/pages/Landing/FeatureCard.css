@@ -1,0 +1,29 @@
+.feature__card{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 20vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: .4rem;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.feature__card__doubt{
+    border-radius: 100%;
+    height: 5rem;
+    width: 5rem;
+    /* border: .1px solid black; */
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0), 0 0 0 2px rgba(255, 255, 255,0),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.1);
+}
+
+.feature__card__head{
+    font-weight: 400;
+}
+
+.feature__card__para{
+    text-align: justify;
+    font-weight: 300;
+}

@@ -1,0 +1,12 @@
+.header{
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.header__navbar{
+    display: flex;
+    width: 25vw;
+    justify-content: space-between;
+}
