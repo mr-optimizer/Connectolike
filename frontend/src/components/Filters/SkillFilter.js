@@ -1,5 +1,5 @@
 import React from 'react'
-// import CheckboxList from '../Forms/CheckboxList'
+import CheckboxList from '../Forms/CheckboxList'
 import './SkillFilter.css'
 
 const SkillFilter = () => {
@@ -16,7 +16,7 @@ const SkillFilter = () => {
             </div>
           )
         })}
-        {/* <CheckboxList checkList={skillsCheckList}/> */}
+        <CheckboxList checkList={skillsCheckList}/>
       </div>
     </div>
   )

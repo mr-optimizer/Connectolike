@@ -14,7 +14,6 @@ const SectorFilter = () => {
               </div>
             )
           })}
-          {/* <CheckboxList checkList={skillsCheckList}/> */}
         </div>
       </div>
     )

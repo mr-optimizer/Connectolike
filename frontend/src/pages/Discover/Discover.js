@@ -1,14 +1,13 @@
-import React, {} from "react";
-import "./pages/Discover/Discover.css";
-import DiscoverCard from "./pages/Discover/DiscoverCard";
-import SortBy from "./pages/Discover/SortBy";
-import SkillFilter from '../src/components/Filters/SkillFilter'
-import SectorFilter from '../src/components/Filters/SectorFilter'
-import BranchFilter from '../src/components/Filters/BranchFilter'
-// import SemesterFilter from '../src/components/Filters/SemesterFilter'
+import React from "react";
+import "./Discover.css";
+import DiscoverCard from "./DiscoverCard";
+import SortBy from "./SortBy";
+import SkillFilter from "../../components/Filters/SkillFilter";
+import SectorFilter from "../../components/Filters/SectorFilter";
+import BranchFilter from "../../components/Filters/BranchFilter";
+import SemesterFilter from "../../components/Filters/SemesterFilter";
 
 const Discover = () => {
-
   const persons = [
     {
       id: "1",
@@ -60,19 +59,22 @@ const Discover = () => {
       {/* Header */}
       <div className="discover__body">
         <div className="left-contents">
-          <div className="left__head">
-            <h3>Filters</h3> 
-            <SortBy/>
-          </div>
-          <SkillFilter/>
-          <SectorFilter/>
-          <BranchFilter/>
-          {/* <SemesterFilter filterVaueSelected={onFilterVaueSelected}/> */}
-          {/* skills, sector, experience, branch, semeseter */}
+          <form>
+            <div className="left__head">
+              <h3>Filters</h3>
+              <SortBy />
+            </div>
+            
+            <SkillFilter />
+            <SectorFilter />
+            <BranchFilter />
+            <SemesterFilter />
+            {/* skills, sector, experience, branch, semeseter */}
+          </form>
         </div>
 
         <div className="right-contents">
-          {persons.map((person,index) => {
+          {persons.map((person, index) => {
             return (
               <DiscoverCard
                 key={index}

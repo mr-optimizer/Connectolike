@@ -1,9 +1,11 @@
+import React from 'react';
+// import { Link } from 'react-router-dom';
 import './Navbar.css'
 
 const Navbar = () => {
     return (
-      <nav className="navigation">
-        <a href="/" className="brand-name">
+      <nav className="nav">
+        {/* <a href="/" className="brand-name">
           Code Companion
         </a>
         <button className="hamburger">
@@ -19,21 +21,26 @@ const Navbar = () => {
               clipRule="evenodd"
             />
           </svg>
-        </button>
-        <div
-          className="navigation-menu">
-          <ul>
-            <li>
-              <a href="/home">Home</a>
+        </button> */}
+          {/* <ul className='nav__menu'>
+            <li className='nav__item'>
+              <Link to="/" className='nav__link'>Home</Link>
             </li>
-            <li>
-              <a href="/about">About</a>
+            <li className='nav__item'>
+              <Link to="/" className='nav__link'>Features</Link>
             </li>
-            <li>
-              <a href="/contact">Contact</a>
+            <li className='nav__item'>
+              <Link to="/" className='nav__link'>WhyCC</Link>
             </li>
-          </ul>
-        </div>
+            <li className='nav__item'>
+              <Link to="/" className='nav__link'>About US</Link>
+            </li>
+          </ul> */}
+          <div className='nav__toggler'>
+            <div className='line1'></div>
+            <div className='line2'></div>
+            <div className='line3'></div>
+          </div>
       </nav>
     );
   }

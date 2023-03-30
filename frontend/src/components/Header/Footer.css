@@ -1,0 +1,114 @@
+.footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    color: #fff;
+    background-color: rgb(42, 42, 42);
+}
+
+.left{
+    width: 20rem;
+    display: flex;
+    padding: 2rem 1rem ;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3rem;
+    /* background-color: green; */
+}
+
+.email-notify{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+input {
+    outline: none;
+    border: specify yours;
+    width: 100%;
+    color: #fff;
+}
+
+.input-email{
+    padding: 1rem 2rem;
+    background-color: #252525;
+    border-radius: .5rem;
+    border-bottom: .1rem solid black;
+}
+
+.sending{
+    position: absolute;
+    left: 21rem;
+    top : 2.9rem;
+    rotate: -30deg;
+    color: beige;
+}
+
+.right{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: green; */
+}
+
+/* .about{
+    text-align: left;
+} */
+
+/* .foot-explore-contact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+/* .explore{
+    display: flex;
+} */
+
+.contacts li{
+    display: flex;
+    gap: .8rem;
+}
+
+li{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+}
+
+
+@media (max-width:786px) {
+    .left{
+        justify-content: center;
+        align-items: center;
+    }
+
+    input{
+        width: 80%;
+    }
+
+    .sending{
+        left: 17rem;
+    }
+}
+
+@media (max-width:700px) {
+    .left{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right{
+        width: 100%;
+    }
+}
