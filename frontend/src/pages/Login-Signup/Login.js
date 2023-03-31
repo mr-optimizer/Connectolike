@@ -37,6 +37,7 @@ const Login = () => {
               onChange={(e) => {setEmail(e.target.value)}}
               label="Username"
             />
+            <FiEye className="reveal" onClick={() => setShown(!shown)} />
             <TextField
               sx={{
                 width: { xs: 300, sm: 400, md: 400 },
@@ -51,7 +52,6 @@ const Login = () => {
               value={pwd}
               onChange={(e) => setPwd(e.target.value)}
             />
-            <FiEye className="reveal" onClick={() => setShown(!shown)} />
 
             <div className="login__content__bottom">
               <div className="login__content__btns">

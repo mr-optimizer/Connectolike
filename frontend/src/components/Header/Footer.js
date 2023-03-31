@@ -1,105 +1,84 @@
-import {React, useState} from 'react'
+import { React } from "react";
 
-import './Footer.css'
+import "./Footer.css";
 
-import { Button } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import InstagramIcon from '@mui/icons-material/Instagram';
-// import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
+import { Button } from "@mui/material";
+// import SendIcon from "@mui/icons-material/Send";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+// import TelegramIcon from "@mui/icons-material/Telegram";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import PlaceIcon from "@mui/icons-material/Place";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
 
 const Footer = () => {
-    const [email,setEmail] = useState('');
-
-    const changeHandler = (e) => {
-        setEmail(e.target.value);
-    }
-
   return (
-    <div className='footer'>
-        <div className='left'>
-            {/* <h2>Code Companion</h2> */}
-            <div className='email-notify'>
-                <h3>Be the first one to get the updates.</h3>
-                <input className='input-email' name='email' onChange={changeHandler} value={email} placeholder='Your Email'/>
-                <SendIcon className='sending' />
-            </div>
-            <div className='social__container'>
-                <Button 
-                    variant="link"
-                    color="default"
-                    className='facebook'
-                    startIcon={<FacebookIcon />}
-                    href="https://www.facebook.com/"
-                    target="_blank"
-                />
-                <Button 
-                    variant="link"
-                    color="default"
-                    className='facebook'
-                    startIcon={<InstagramIcon />}
-                    href="https://www.instagram.com/"
-                    target="_blank"
-                />
-                <Button 
-                    variant="link"
-                    color="default"
-                    className='facebook'
-                    startIcon={<LinkedInIcon />}
-                    href="https://www.linkedin.com/"
-                    target="_blank"
-                />
-                <Button 
-                    variant="link"
-                    color="default"
-                    className='facebook'
-                    startIcon={<TelegramIcon />}
-                    href="https://web.telegram.org/k/"
-                    target="_blank"
-                />
-            </div>
+    <div className="footer">
+      <div className="footer__container">
+        <div className="footer__container__about">
+          <h1>Code Companion</h1>
+          <p className="footer__container__about--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
+            inventore dolore voluptatibus, rem voluptates ut eum quaerat quasi
+            omnis quod molestias labore ipsum nostrum maiores repudiandae
+            adipisci voluptate!
+          </p>
+          <div className="social__container">
+            <Button
+              variant="link"
+              color="default"
+              className="social_icon"
+              startIcon={<FacebookIcon />}
+              href="https://www.facebook.com/"
+              target="_blank"
+            />
+            <Button
+              variant="link"
+              color="default"
+              className="social_icon"
+              startIcon={<InstagramIcon />}
+              href="https://www.instagram.com/"
+              target="_blank"
+            />
+            <Button
+              variant="link"
+              color="default"
+              className="social_icon"
+              startIcon={<LinkedInIcon />}
+              href="https://www.linkedin.com/"
+              target="_blank"
+            />
+          </div>
         </div>
 
-        <div className='right'>
-            {/* <div className='about'>
-                <h2>Code Companion</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur. Eu et in faucibus elit vulputate aliquam ut. Dui turpis est pellentesque aliquet. Lorem ipsum dolor sit amet consectetur. Eu et in faucibus elit vulputate aliquam ut. Dui turpis est pellentesque aliquet.
-                </p>
-            </div> */}
+        <div className="footer__container__contacts">
+          <h3>Contact Us</h3>
+          <div className="contacts">
+            <a className="link" href="tel:9798447977">
+              <PlaceIcon />
+              Chandigarh University NH-05, Mohali, Punjab (INDIA)
+            </a>
 
-            {/* <div className='foot-explore-contact'> */}
-                {/* <div className='explore'>
-                    <h4>Explore</h4>
-                    <li>
-                        <KeyboardArrowRightIcon/> Link 1
-                    </li>
-                    <li>
-                        <KeyboardArrowRightIcon/> Link 2
-                    </li>
-                    <li>
-                        <KeyboardArrowRightIcon/> Link 3
-                    </li>
-                </div> */}
-                <div className='contacts'>
-                    <li>
-                        <SupportAgentIcon/> 
-                        <p>Support :- <a className='link' href="tel:5551234567">555 1234 567</a></p>
-                    </li>
+            <a className="link" href="tel:9798447977">
+              <SupportAgentIcon />
+              Support :- 9798 447 977
+            </a>
 
-                    <li>
-                        <MailOutlineOutlinedIcon/>
-                        <p> Email :- <a className='link' href="mailto:willie.jennings@example.com">willie.jennings@example.com</a> </p>
-                    </li>
-                </div>
-            {/* </div> */}
+            <a className="link" href="mailto:willie.jennings@example.com">
+              <MailOutlineOutlinedIcon />
+              Email :- contactswask@gmail.com
+            </a>
+          </div>
         </div>
+      </div>
+      <div className="hr__line"></div>
+      <div className="copyright">
+        <span className="u-red-text"> Code Companion</span>, &#169; 2023 All
+        Rights Reserved
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

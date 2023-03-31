@@ -13,7 +13,6 @@ const DiscoverCard = (props) => {
   const skillList = props.skill;
   return (
     <div className='discover__card'>
-
       <div className='discover__card__image'>
         <img src={dp1} alt="display_img" className="discover__card__img"/>
       </div>

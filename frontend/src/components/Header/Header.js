@@ -1,20 +1,16 @@
-import {React, useState} from "react";
+import {React} from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import CloseIcon from '@mui/icons-material/Close';
 
 const Header = () => {
-  const handleClick = () => {};
-
-  const [Mobile, setMobile] = useState(false);
-  
 
   return (
     <div className="header">
         <h2 className="brand_name">Code Companion</h2>
-        <div className="to__shrink">
-        <ul className={Mobile ? 'mobile-menu-icon' : 'nav__menu'} onClick={()=>setMobile(true)}>
+        
+        <ul className='nav__menu'>
           <Link to="/" className="nav__link">
             <li className="nav__item">Home</li>
           </Link>
@@ -29,13 +25,8 @@ const Header = () => {
           </Link>
         </ul>
 
-        <button className="cta-header" onClick={handleClick}>
-          <Link to="/signup">Login / SignUp</Link>
-        </button>
-
-        </div>
-        <button className="mobile-menu-icon hamburger">
-            {Mobile ? <CloseIcon/> : <MenuIcon/>}
+        <button className="cta-header">
+          <Link className="wh" to="/signup">Login / SignUp</Link>
         </button>
     </div>
     // <div className="header">

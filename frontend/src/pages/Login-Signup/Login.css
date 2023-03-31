@@ -26,8 +26,10 @@
 .reveal{
     position: absolute;
     top: 5rem;
-    left: 2rem;
+    left: 23rem;
     font-size: 1.5rem;
+    z-index: 12;
+    cursor: pointer;
 }
 
 .login__content__bottom{
