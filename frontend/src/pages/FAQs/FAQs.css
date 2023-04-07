@@ -1,0 +1,33 @@
+.faqs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item{
+    width: 40rem;
+    margin-bottom: .5rem;
+    padding: 1rem 2rem;
+    background: rgb(233, 233, 233);
+    cursor: pointer;
+}
+
+.title{
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content{
+    color: rgb(85, 85, 85);
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+}
+
+.content.show{
+    height: auto;
+    max-height: 9999px;
+    transition: all 0.5s cubic-bezier(1,0,1,0);
+}

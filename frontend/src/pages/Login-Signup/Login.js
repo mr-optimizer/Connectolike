@@ -1,24 +1,49 @@
 import React, { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import TextField from "@mui/material/TextField";
 import { FiEye } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { hideLoading, showLoading } from "../../redux/alertSlice";
 
 const Login = () => {
   const [shown, setShown] = useState(false);
   const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    navigate('/discover')
+    try {
+      const load  = {email, password}
+      const config = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+      dispatch(showLoading());
+      const response = await axios.post("/api/v1/login", load,config);
+      dispatch(hideLoading());
+      if(response.data.success) {
+        toast.success(response.data.message);
+        localStorage.setItem("token", response.data.token);
+        navigate("/discover");
+      }else{
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      toast.error("Something went wrong!");
+    }
   }
 
   return (
     <div className="login">
-      <form action="" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="login__content">
           <h3>LOG IN</h3>
           <div className="login__content__form">
@@ -31,6 +56,7 @@ const Login = () => {
               }}
               type="email"
               id="email"
+              name="email"
               pattern=".+@globex\.com"
               size="30"
               value={email}
@@ -46,11 +72,12 @@ const Login = () => {
                 },
               }}
               id="password"
+              name="password"
               label="Password"
-              minlength="6"
+              minLength="6"
               type={shown ? "text" : "password"}
-              value={pwd}
-              onChange={(e) => setPwd(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
 
             <div className="login__content__bottom">

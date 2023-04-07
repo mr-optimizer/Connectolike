@@ -17,7 +17,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer__container">
         <div className="footer__container__about">
-          <h1>Code Companion</h1>
+          <h1>C-Kit</h1>
           <p className="footer__container__about--text">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
             inventore dolore voluptatibus, rem voluptates ut eum quaerat quasi

@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import axios from 'axios';
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import TextField from "@mui/material/TextField";
 import { FiEye } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { hideLoading, showLoading } from "../../redux/alertSlice";
+
 
 const Signup = () => {
   const [shown, setShown] = useState(false);
@@ -23,7 +28,8 @@ const Signup = () => {
   const [branch, setBranch] = useState('');
   const [year, setYear] = useState('');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // const handleInput = (e) => {
   //   const name = e.target.name;
@@ -32,14 +38,40 @@ const Signup = () => {
   //   setUserReg({ ...userReg, [name]: value });
   // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    navigate('/discover')
+    try {
+      // console.log(e.target.value);
+      const load  = {name, email,phone, password, branch, year}
+      // console.log(load)
+      const config = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+      dispatch(showLoading());
+      // console.log(userData)
+      // console.log(phone)
+      const response = await axios.post("/api/v1/register",load,config);
+      // console.log(response.data)
+      dispatch(hideLoading());
+      if(response.data.success) {
+        toast.success(response.data.message);
+        toast("Redirecting to login page...");
+        navigate("/login");
+      }else{
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      // console.log(error.response)
+      dispatch(hideLoading());
+      toast.error("Something went wrong!");
+    }
   };
 
   return (
     <div className="signup">
-      <form action="/discover" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="signup__content">
           <h3>SIGN UP</h3>
           <div className="signup__content__form">
@@ -51,6 +83,7 @@ const Signup = () => {
                 },
               }}
               id="name"
+              name="name"
               value={name}
               onChange={(e) => {setName(e.target.value)}}
               label="Name"
@@ -64,6 +97,7 @@ const Signup = () => {
               }}
               type="email"
               id="email"
+              name="email"
               pattern=".+@globex\.com"
               size="30"
               value={email}
@@ -78,6 +112,7 @@ const Signup = () => {
                 },
               }}
               id="phone"
+              name="phone"
               value={phone}
               onChange={(e) => {setPhone(e.target.value)}}
               label="Phone"
@@ -91,6 +126,7 @@ const Signup = () => {
                 },
               }}
               id="password"
+              name="password"
               value={password}
               onChange={(e) => {setPassword(e.target.value)}}
               label="Password"
@@ -108,6 +144,7 @@ const Signup = () => {
                 },
               }}
               id="branch"
+              name="branch"
               value={branch}
               onChange={(e) => {setBranch(e.target.value)}}
               label="Branch"
@@ -120,6 +157,7 @@ const Signup = () => {
                 },
               }}
               id="year"
+              name="year"
               value={year}
               onChange={(e) => {setYear(e.target.value)}}
               label="Year"

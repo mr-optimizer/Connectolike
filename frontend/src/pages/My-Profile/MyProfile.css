@@ -1,0 +1,90 @@
+.my__profile{
+    
+}
+
+.my__profile__images__and__buttons{
+
+}
+
+.cover__image{
+    padding: 0 1rem;
+}
+.cover__img{
+    width: 100%;
+    height: 30vh;
+    border-radius: 6rem .4rem .4rem .4rem ;
+}
+.profile__container{
+    margin: -3rem 0 3rem;
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.profile{
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.profile__img{
+    height: 12rem;
+    border-radius: 100%;
+}
+
+.profile__name{
+    margin: 0;
+}
+
+.profile__email{
+    margin: 0;
+    color: grey;
+}
+
+.buttons{
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-cancle{
+    background-color: grey;
+    padding: 1rem;
+}
+
+.btn-save{
+    background-color: rgb(0, 0, 0);
+    padding: 1rem 1.4rem;
+    color: white;
+}
+
+
+/* ///////////////////////////////////////////////////// */
+
+.details__container{
+    padding: 0 8rem;
+}
+
+.personal__details, .professional__details, .social__details {
+    padding: 0 4rem;
+    margin: 3rem 0;
+}
+
+.personal__details__component, .professional__details__component, .social__details__component{
+    padding: 0 4rem;
+}
+
+.heading__section{
+    font-size: 1.8rem;
+}
+.component{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.component__lable{
+    margin: .6rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+}

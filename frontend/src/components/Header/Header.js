@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className="header">
-        <h2 className="brand_name">Code Companion</h2>
+        <h2 className="brand_name">C-Kit</h2>
         
         <ul className='nav__menu'>
           <Link to="/" className="nav__link">
