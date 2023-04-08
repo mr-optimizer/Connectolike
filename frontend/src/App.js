@@ -25,7 +25,7 @@ function App() {
           <CircularProgress />
         </div>
       )}
-        <Toaster position="top-right"/>
+        <Toaster position="top-center"  duration= "3000"/>
         <Header />
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -35,6 +35,7 @@ function App() {
           <Route path="/my-profile" element={<MyProfile />} />
           <Route path="/faq" element={<FAQs />} />
           <Route path="/doubts" element={<Doubts />} />
+          <Route path="/about" element={<Doubts />} />
         </Routes>
         <Footer />
       </Router>

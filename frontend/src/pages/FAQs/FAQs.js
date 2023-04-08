@@ -48,13 +48,13 @@ const FAQs = () => {
         <h1 className='faqs'>Frequently Asked Questions</h1>
         <div className='question-container'>
             {
-                qnaList.map((item,i) => (
-                    <div className='item'>
-                        <div className='title' onClick={()=>{toggle(i)}}>
+                qnaList.map((item,index) => (
+                    <div className='item' key={index}>
+                        <div className='title' onClick={()=>{toggle(index)}}>
                             <h2>{item.question}</h2>
-                            <span>{selected === i ? '-' : '+' }</span>
+                            <span>{selected === index ? '-' : '+' }</span>
                         </div>
-                        <div className={selected === i ? 'content.shown' : 'content'}>
+                        <div className={selected === index ? 'content.shown' : 'content'}>
                             <p>{item.answer}</p>
                         </div>
                     </div>

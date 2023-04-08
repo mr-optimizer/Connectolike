@@ -1,17 +1,16 @@
 import React, { useState } from "react";
+import "./Login.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import "./Login.css";
 import TextField from "@mui/material/TextField";
-import { FiEye } from "react-icons/fi";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
 
 import LoginImg from "../../images/Login/login.jpg";
+import { setUser } from "../../redux/userSlice";
 
 const Login = () => {
-  const [shown, setShown] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,17 +20,18 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(showLoading());
       const load = { email, password };
       const config = {
         headers: {
           "content-type": "application/json",
         },
       };
-      dispatch(showLoading());
       const response = await axios.post("/api/v1/login", load, config);
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);
+        dispatch(setUser(response.data.user))
         localStorage.setItem("token", response.data.token);
         navigate("/discover");
       } else {
@@ -39,7 +39,7 @@ const Login = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      toast.error("Something went wrong!");
+      toast.error(error.response.data.message);
     }
   };
 
@@ -79,12 +79,10 @@ const Login = () => {
               name="password"
               label="Password"
               minLength="6"
-              type={shown ? "text" : "password"}
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></TextField>
-            {/* <FiEye className="reveal" onClick={() => setShown(!shown)} /> */}
-
             <div className="login__content__bottom">
               <button className="actionLogin">Login</button>
               <p className="login__txt">

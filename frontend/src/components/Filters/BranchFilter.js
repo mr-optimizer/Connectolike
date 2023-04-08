@@ -9,13 +9,12 @@ const BranchFilter = () => {
         <div className='sectorList'>
           {branchRadioList.map((item,index) => {
             return (
-              <div>
+              <div key={index}>
                 <input value={item} type="radio" />
                 <span>{item}</span>
               </div>
             )
           })}
-          {/* <CheckboxList checkList={skillsCheckList}/> */}
         </div>
       </div>
     )

@@ -19,10 +19,15 @@
 }
 
 .cta-header {
-    /* background-color: black; */
+    color: white;
     background-color: rgb(26, 5, 156);
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
     padding: .7rem 2.5rem;
+}
+
+.my__profile__btn{
+    display: flex;
+    gap: 1rem;
 }
 
 .wh {
@@ -44,4 +49,8 @@
 .brand__name {
     color: rgb(26, 5, 156);
 
+}
+
+.active--underline{
+    border-bottom: 1.5px solid rgb(26, 5, 156);
 }

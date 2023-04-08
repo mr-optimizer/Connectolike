@@ -8,7 +8,7 @@ const SectorFilter = () => {
         <div className='sectorList'>
           {sectorRadioList.map((item,index) => {
             return (
-              <div>
+              <div key={index}>
                 <input value={item} type="radio" />
                 <span>{item}</span>
               </div>

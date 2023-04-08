@@ -10,8 +10,8 @@ const SkillFilter = () => {
       <div className='skillList'>
         {skillsCheckList.map((item,index) => {
           return (
-            <div>
-              <input value={item} type="checkbox" />
+            <div key={index}>
+              <input value={item}  type="checkbox" />
               <span>{item}</span>
             </div>
           )
