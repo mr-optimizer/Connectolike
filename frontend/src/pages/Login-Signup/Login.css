@@ -1,59 +1,53 @@
 .login{
+    text-align: center;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    padding: 0 10rem 0 0;
+    justify-content: space-between;
     align-items: center;
+    font-size: 1.7rem;
+    color: rgb(26, 5, 156);
 }
 
 .login__content{
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    background-color: rgb(235, 235, 235);
-    padding: 2rem 4rem;
+    border: 1.5px solid rgb(26, 5, 156);
+    margin-top: 4rem;
+    padding: 3rem 4rem;
     font-size: 2rem;
 }
-
+.login__txt{
+    font-size: 1.5rem;
+}
 .login__content__form{
-    position: relative;
+    margin-top: 2rem;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
-    gap: 1rem;
-}
-
-.reveal{
-    position: absolute;
-    top: 5rem;
-    left: 23rem;
-    font-size: 1.5rem;
-    z-index: 12;
-    cursor: pointer;
+    gap: 2rem;
 }
 
 .login__content__bottom{
     margin: 1rem;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.login__content__btns{
-    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     gap: 9rem;
-    flex-wrap: wrap;
-
 }
+
 
 .actionLogin{
     padding: .6rem 2rem;
-    background-color: rgb(196, 196, 196);   
-    font-size: 1rem;
+    background-color: rgb(26, 5, 156);   
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.25);
+    color: white;
+    font-size: 1.7rem;
 }
 
 .para__small{
-    font-size: .6rem;
+    font-size: 1.5rem;
 }
 
 button{
@@ -62,8 +56,8 @@ button{
     border-radius: 10rem;
 }
 
-button:focus {
-    outline: orange 5px auto;
+.login__img{
+    height: 60rem;
 }
 
 

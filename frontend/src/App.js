@@ -19,7 +19,6 @@ import Doubts from "./pages/Doubts/Doubts";
 function App() {
   const { loading } = useSelector((state) => state.alert);
   return (
-    <div className="App">
       <Router>
         {loading && (
         <div className="spinner-parent">
@@ -39,7 +38,6 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </div>
   );
 }
 

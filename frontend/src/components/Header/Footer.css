@@ -1,18 +1,20 @@
 .footer{
-    padding: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem 5rem;
     color: #fff;
-    background-color: rgb(42, 42, 42);
+    background-color: rgb(20, 4, 125);
 }
 
 .footer__container{
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .footer__container__about{
-    width: 30rem;
+    width: 50rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -26,7 +28,7 @@
 
 .footer__container__contacts{
     width: 30rem;
-    padding: 1rem 0 0 0 ;
+    padding: 1rem 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -63,9 +65,10 @@
   
 .copyright {
     margin-top: .8rem;
-    color: rgb(163, 163, 163);
+    color: rgb(218, 216, 216);
     font-family: "lato";
     font-style: italic;
+    text-align: center;
 }
 @media screen and (max-width: 37.5em) {
     .copyright {

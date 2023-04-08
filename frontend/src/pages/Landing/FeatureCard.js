@@ -1,15 +1,22 @@
 import React from "react";
-import doubts from '../../images/doubts.png'
-import './FeatureCard.css'
+import "./FeatureCard.css";
 
-const FeatureCard = () => {
-    return (
-        <div className="feature__card">
-            <img src={doubts} alt="doubt_img" className="feature__card__doubt"/>
-            <h2 className="feature__card__head">Get Your Doubts Solved</h2>
-            <p className="feature__card__para">Lorem ipsum dolor sit amet consectetur. Eu et in faucibus elit vulputate aliquam ut. Dui turpis est pellentesque aliquet porta. Ultrices hendrerit orci etiam mauris duis pharetra et sit pellentesque. Praesent id nec eget urna vestibulum. Dui turpis est pellentesque aliquet.</p>
-        </div>
-    )
-}
+const FeatureCard = (props) => {
+  return (
+    <div className={props.isRotated ? "card__container flex-rotate" : "card__container"}>
+      <div className="card__container__left ">
+        <h5 className="card__heading">{props.title}</h5>
+        <ul className="card__list">
+            {props.description.map((point, index) => (
+                <li key={index} className=" card__list__item">{point}</li>
+            ))}
+        </ul>
+      </div>
+      <div className="card__container__right">
+        <img className="card_image" src={props.image} alt={props.title} />
+      </div>
+    </div>
+  );
+};
 
 export default FeatureCard;

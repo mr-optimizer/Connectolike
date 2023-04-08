@@ -1,17 +1,22 @@
 .signup{
-    height: 100vh;
-    padding: 2rem 0rem;
+    height: 110vh;
+    color: rgb(26, 5, 156);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 8rem 0 2rem;
 }
-
+.signup__title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+}
 .signup__content{
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
-    background-color: rgb(235, 235, 235);
+    border: 1.5px solid rgb(26, 5, 156);
     padding: 2rem 4rem;
     font-size: 2rem;
     border-radius: .4rem;
@@ -24,50 +29,34 @@
     gap: 1rem;
 }
 
-.reveal{
-    position: absolute;
-    top: 13.2rem;
-    left: 23rem;
-    font-size: 1.5rem;
-}
 
 .signup__content__bottom{
-    margin: 1rem;
+    /* margin: 1rem; */
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
 
-.signup__content__btns{
-    display: flex;
-    gap: 9rem;
-    flex-wrap: wrap;
-
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 7rem;
 }
+.signup__img{
+    width: 60rem;
+}
+    
+
 
 .actionsignup{
     padding: .6rem 2rem;
-    background-color: rgb(196, 196, 196);   
-    font-size: 1rem;
+    background-color: rgb(26, 5, 156);   
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.25);
+
+    color: white;
+    font-size: 1.7rem;
 }
 
 .para__small{
-    font-size: .6rem;
+    font-size: 1.5rem;
 }
 
-h3{
-    margin: 0rem;
-}
-
-button{
-    all: unset;
-    cursor: pointer;
-    border-radius: 10rem;
-}
-
-button:focus {
-    outline: orange 5px auto;
-}
 
 
 

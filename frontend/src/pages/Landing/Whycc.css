@@ -3,8 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem 8rem;
-    /* background-color: rgb(227, 29, 29); */
+    padding-bottom: 10rem;
 }
 
 .whycc__para{
@@ -13,9 +12,11 @@
     padding: 3.2rem 4rem 2.4rem 4rem;
     text-align: justify;
     color: azure;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     border-radius: .4rem;
-    background-color: rgb(63, 63, 63);
+    /* background-color: rgb(63, 63, 63); */
+
+    background-color: rgb(26, 5, 156);
 }
 
 .whycc__figures{
@@ -34,6 +35,8 @@
     font-weight: 700;
     border-radius: .4rem;
     background-color: rgb(149, 149, 149);
+    background-color: rgb(231, 178, 5);
+
 }
 
 .whycc__figures-fig{

@@ -8,6 +8,8 @@ import TextField from "@mui/material/TextField";
 import { FiEye } from "react-icons/fi";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
 
+import LoginImg from "../../images/Login/login.jpg";
+
 const Login = () => {
   const [shown, setShown] = useState(false);
   const [email, setEmail] = useState("");
@@ -16,33 +18,34 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const load  = {email, password}
+      const load = { email, password };
       const config = {
         headers: {
           "content-type": "application/json",
         },
       };
       dispatch(showLoading());
-      const response = await axios.post("/api/v1/login", load,config);
+      const response = await axios.post("/api/v1/login", load, config);
       dispatch(hideLoading());
-      if(response.data.success) {
+      if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.token);
         navigate("/discover");
-      }else{
+      } else {
         toast.error(response.data.message);
       }
     } catch (error) {
       dispatch(hideLoading());
       toast.error("Something went wrong!");
     }
-  }
+  };
 
   return (
     <div className="login">
+      <img src={LoginImg} className="login__img" alt="login"></img>
       <form onSubmit={handleSubmit}>
         <div className="login__content">
           <h3>LOG IN</h3>
@@ -60,10 +63,11 @@ const Login = () => {
               pattern=".+@globex\.com"
               size="30"
               value={email}
-              onChange={(e) => {setEmail(e.target.value)}}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               label="Username"
             />
-            <FiEye className="reveal" onClick={() => setShown(!shown)} />
             <TextField
               sx={{
                 width: { xs: 300, sm: 400, md: 400 },
@@ -78,14 +82,12 @@ const Login = () => {
               type={shown ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
+            ></TextField>
+            {/* <FiEye className="reveal" onClick={() => setShown(!shown)} /> */}
 
             <div className="login__content__bottom">
-              <div className="login__content__btns">
-                <button className="actionLogin">Login with G</button>
-                <button className="actionLogin">Login</button>
-              </div>
-              <p className="para__small">
+              <button className="actionLogin">Login</button>
+              <p className="login__txt">
                 Don't have an Account - <Link to="/signup">SignUp</Link>
               </p>
             </div>

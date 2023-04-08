@@ -1,7 +1,7 @@
 .features{
-    padding: 2rem;
+    padding: 0rem 12rem;
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }

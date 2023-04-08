@@ -1,30 +1,47 @@
-.header{
-    padding: 0 2rem;
+.header {
+    font-size: 1.5rem;
+    padding: 0 2rem 0rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: rgb(26, 5, 156);
+    position: fixed;
+    width: 97%;
+    background-color: white;
+    z-index: 30;
 }
 
-.nav__menu{
+.nav__menu {
     display: flex;
     justify-content: space-around;
     list-style: none;
+    margin-right: 5rem;
 }
 
-.cta-header{
-    background-color: black;
-    padding: .6rem 1.2rem;
+.cta-header {
+    /* background-color: black; */
+    background-color: rgb(26, 5, 156);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: .7rem 2.5rem;
 }
 
-.wh{
+.wh {
     color: aliceblue;
     text-decoration: none;
 }
 
-.nav__link{
+.nav__link {
     text-decoration: none;
-    color: black;
+    color: rgb(26, 5, 156);
+    /* font-weight: 500; */
     padding: 0 1rem;
     margin: 0 1rem;
     cursor: pointer;
+}
+
+
+
+.brand__name {
+    color: rgb(26, 5, 156);
+
 }

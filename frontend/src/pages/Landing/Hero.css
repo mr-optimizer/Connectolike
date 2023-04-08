@@ -1,12 +1,8 @@
 .hero{
     display: flex;
-    height: 90vh;
-    color: #fff;
-    /* clip-path: polygon(0% 0%, 30% 40%, 10% 80%, 89% 30%); */
-    clip-path: circle(62% at 20% 11%);
-    background: linear-gradient(135deg,#000000 0%, rgba(0, 0, 0, 0.8) 33.04%,rgba(0, 0, 0, 0.6563) 59.43%,rgba(89, 89, 89, 0.428) 100%);
-    /* #000000 0%, rgba(0, 0, 0, 0.8) 33.04%, rgba(0, 0, 0, 0.6563) 59.43%, rgba(89, 89, 89, 0.428) 100%
-    */
+    height: 100vh;
+    align-items: center;
+    color: rgb(26, 5, 156);
 }
 
 .hero__texts{
@@ -14,31 +10,35 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 3rem;
-    padding: 6rem 8rem;
-    color: #fff;
+    padding: 0rem 7rem;
 }
 
 .hero__texts__head{
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .hero__texts__head__subhead{
-    /* not a good practise */
-    height: 2rem; 
+    height: 3rem; 
     animation: blinking 800ms infinite;
-    border-right: .15rem solid #fff;
-    font-size: 2rem;
-    color: #fff;
+    border-right: .15rem solid #000;
+    font-size: 3rem;
 }
 
 .hero__texts__btn{
-    font-size: 1.2rem;
-    padding: .8rem 1.8rem;
-    background-color: grey;
+    font-size: 1.5rem;
+    padding: .8rem 3rem;
+    border-radius: 10px;
+    /* background-color: black; */
+    background-color: rgb(26, 5, 156);
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.25);
+    color: #fff;
 }
 
 .hero__texts__btn:hover{
     cursor: pointer;
+}
+.hero_image{
+    height: 45rem;
 }
 
 @keyframes blinking{
