@@ -44,7 +44,6 @@ const Signup = () => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      // console.log(error.response)
       dispatch(hideLoading());
       toast.error("Something went wrong!");
     }

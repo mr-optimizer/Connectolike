@@ -1,5 +1,6 @@
 .my__profile{
-    
+    font-size: 1.7rem;
+    /* color: rgb(26, 5, 156); */
 }
 
 .my__profile__images__and__buttons{
@@ -7,7 +8,7 @@
 }
 
 .cover__image{
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
 }
 .cover__img{
     width: 100%;
@@ -48,13 +49,16 @@
 }
 
 .btn-cancle{
-    background-color: grey;
-    padding: 1rem;
+    background-color: rgb(80, 77, 102);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0.7rem 2.5rem;
+    color: white;
 }
 
 .btn-save{
-    background-color: rgb(0, 0, 0);
-    padding: 1rem 1.4rem;
+    background-color: rgb(26, 5, 156);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0.7rem 3.7rem;
     color: white;
 }
 
@@ -68,6 +72,8 @@
 .personal__details, .professional__details, .social__details {
     padding: 0 4rem;
     margin: 3rem 0;
+    width: 60rem;
+    
 }
 
 .personal__details__component, .professional__details__component, .social__details__component{
@@ -80,6 +86,7 @@
 .component{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
 }
 

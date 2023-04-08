@@ -27,7 +27,6 @@ const Whycc = () => {
         <div className="whycc__figures-fig">
           <span className="cont">
             <span class="value" data-val="120">
-              {/* {activeFig} */}
               <ScrollTrigger
                 onEnter={() => setCounterOn(true)}
                 onExit={() => setCounterOn(false)}
@@ -42,7 +41,6 @@ const Whycc = () => {
         <div className="whycc__figures-fig">
           <span className="cont">
             <span class="value" data-val="120">
-              {/* {communityFig} */}
               <ScrollTrigger
                 onEnter={() => setCounterOn(true)}
                 onExit={() => setCounterOn(false)}

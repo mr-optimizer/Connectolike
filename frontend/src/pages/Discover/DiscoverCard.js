@@ -22,7 +22,7 @@ const DiscoverCard = (props) => {
         <p className='discover__card__infos__name'>{props.name}</p></div>
         <div className='discover__card__infos--branch__sem'>
           <p className='discover__card__infos--branch'>{props.branch}</p>
-          <p className='discover__card__infos--sem'>{props.sem}<span className='small'>th Sem</span></p>
+          <p className='discover__card__infos--sem'>{props.sem}<span>th Sem</span></p>
         </div>
       </div>
       
@@ -34,10 +34,10 @@ const DiscoverCard = (props) => {
       
       <div className='discover__card__social'>
         <div className='discover__card__social__public'>
-          <FacebookIcon className='discover__card__social__public--icons'/>
-          <LinkedInIcon className='discover__card__social__public--icons'/>
-          <LanguageIcon className='discover__card__social__public--icons'/>
-          <GitHubIcon className='discover__card__social__public--icons'/>
+          <FacebookIcon className='discover__card__social__public--icons' style={{fontSize:"3rem"}}/>
+          <LinkedInIcon className='discover__card__social__public--icons'style={{fontSize:"3rem"}}/>
+          <LanguageIcon className='discover__card__social__public--icons'style={{fontSize:"3rem"}}/>
+          <GitHubIcon className='discover__card__social__public--icons'style={{fontSize:"3rem"}}/>
         </div>
         <div className='discover__card__social__private'>
           <button className='discover__card__social__private--message'><WhatsAppIcon className='discover__card__social__private--icon'/> Message</button>

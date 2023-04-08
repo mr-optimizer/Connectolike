@@ -1,19 +1,18 @@
 .discover{
-    display: flex;  
-    gap: 2rem;
-    background-color: rgb(216, 216, 216);
+    padding-top: 6rem;
+    font-size: 1.5rem;
 }
 
 .discover__body{
     display: flex;
-    gap: 2rem;
+    gap: 6rem;
 }
 
 .left-contents{
-    min-width: 15rem;
-    padding: 1rem;
-    /* background-color: rgb(216, 216, 216); */
-    /* border-radius: .2rem; */
+    min-width: 23rem;
+    padding: 1rem 2rem 3rem 2rem;
+    color: white;
+    background-color: rgb(26, 5, 156);
 }
 
 .left__head{

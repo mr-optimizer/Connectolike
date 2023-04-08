@@ -1,7 +1,6 @@
 import React from "react";
 import "./Discover.css";
 import DiscoverCard from "./DiscoverCard";
-// import SortBy from "./SortBy";
 import SkillFilter from "../../components/Filters/SkillFilter";
 import SectorFilter from "../../components/Filters/SectorFilter";
 import BranchFilter from "../../components/Filters/BranchFilter";
@@ -61,14 +60,12 @@ const Discover = () => {
           <form>
             <div className="left__head">
               <h2>Filters</h2>
-              {/* <SortBy  /> */}
             </div>
             
             <SkillFilter />
             <SectorFilter />
             <BranchFilter />
             <SemesterFilter />
-            {/* skills, sector, experience, branch, semeseter */}
             <button className="search-btn">Search</button>
           </form>
         </div>

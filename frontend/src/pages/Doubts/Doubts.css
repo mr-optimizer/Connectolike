@@ -1,10 +1,10 @@
 .doubts{
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 600;
     color: white;
-    background-color: rgb(212, 70, 255);
+    background-color: rgb(231, 178, 5);
 }

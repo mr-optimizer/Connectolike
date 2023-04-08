@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./MyProfile.css";
-import cpic from "../../images/Why-Should-We-Hire-You.jpg";
-import ppic from "../../images/swas_k.png";
-
+import avatarImg  from "../../images/MyProfile/avatar.png";
+import coverImg from "../../images/MyProfile/cover.jpg";
 const MyProfile = () => {
   const prevName = "Swastik";
-  const prevEmail = "contactswask@gmail.com";
+  const prevEmail = "swask@gmail.com";
   const prevPhone = "9798 XXX XXX";
   const prevPassword = "Something";
   const prevInstitute = "Manas Vikas";
@@ -40,11 +39,11 @@ const MyProfile = () => {
       <form onSubmit={submitHandler}>
         <div className="my__profile__images__and__buttons">
           <div className="cover__image">
-            <img className="cover__img" src={cpic} alt="cover-page" />
+            <img className="cover__img" src={coverImg} alt="cover-page" />
           </div>
           <div className="profile__container">
             <div className="profile">
-              <img className="profile__img" src={ppic} alt="profile-img" />
+              <img className="profile__img" src={avatarImg} alt="profile-img" />
               <div className="profile__name__email">
                 <h2 className="profile__name">Swastik Kumar</h2>
                 <h3 className="profile__email">contactswask@gmail.com</h3>
@@ -68,6 +67,7 @@ const MyProfile = () => {
                   id="name"
                   name="name"
                   value={name}
+                  size="30" 
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
@@ -97,6 +97,7 @@ const MyProfile = () => {
                   id="phone"
                   name="phone"
                   value={phone}
+                  size="30"
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}
@@ -111,6 +112,7 @@ const MyProfile = () => {
                   id="password"
                   name="password"
                   value={password}
+                  size="30"
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
@@ -132,6 +134,7 @@ const MyProfile = () => {
                   id="institute"
                   name="institute"
                   value={institute}
+                  size="30"
                   onChange={(e) => {
                     setInstitue(e.target.value);
                   }}
@@ -145,6 +148,7 @@ const MyProfile = () => {
                   id="course"
                   name="course"
                   value={course}
+                  size="30"
                   onChange={(e) => {
                     setCourse(e.target.value);
                   }}
@@ -158,6 +162,7 @@ const MyProfile = () => {
                   id="branch"
                   name="branch"
                   value={branch}
+                  size="30"
                   onChange={(e) => {
                     setBranch(e.target.value);
                   }}
@@ -171,6 +176,7 @@ const MyProfile = () => {
                   id="year"
                   name="year"
                   value={year}
+                  size="30"
                   onChange={(e) => {
                     setYear(e.target.value);
                   }}
@@ -183,6 +189,7 @@ const MyProfile = () => {
                 <input
                   id="semester"
                   name="semester"
+                  size="30"
                   value={semester}
                   onChange={(e) => {
                     setSemester(e.target.value);
@@ -202,6 +209,7 @@ const MyProfile = () => {
                   id="linkedIn"
                   name="linkedIn"
                   value={linkedIn}
+                  size="30"
                   onChange={(e) => {
                     setLinkedIn(e.target.value);
                   }}
@@ -215,6 +223,7 @@ const MyProfile = () => {
                   id="instagram"
                   name="instagram"
                   value={instagram}
+                  size="30"
                   onChange={(e) => {
                     setInstagram(e.target.value);
                   }}
@@ -228,6 +237,7 @@ const MyProfile = () => {
                   id="whatsApp"
                   name="whatsApp"
                   value={whatsApp}
+                  size="30"
                   onChange={(e) => {
                     setWhatsApp(e.target.value);
                   }}
@@ -241,6 +251,7 @@ const MyProfile = () => {
                   id="facebook"
                   name="facebook"
                   value={facebook}
+                  size="30"
                   onChange={(e) => {
                     setFacebook(e.target.value);
                   }}
