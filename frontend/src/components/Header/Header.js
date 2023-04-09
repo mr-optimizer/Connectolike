@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/userSlice";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const LogoStyle = {
   fontSize: "3rem",
@@ -14,7 +15,9 @@ const LogoStyle = {
 
 const Header = () => {
   const { user } = useSelector((state) => state.user);
-  const [activePage, setActivePage] = useState("Home");
+
+  // const [authenticatedUser, setAuthenticatedUser] = useState(false);
+  const [activePage, setActivePage] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let location = useLocation();
@@ -25,20 +28,34 @@ const Header = () => {
     navigate("/login");
   };
 
+
   useEffect(() => {
     if (location.pathname === "/discover") {
-      setActivePage("Explore");
       if (!user) {
-        toast.error("Please login to explore");
-        navigate("/login");
+        const isAuthenticatedUser = async () => {
+          try {
+            const response = await axios.get("/api/v1/isAuthenticatedUser");
+            if (response.data.success) {
+              dispatch(setUser(response.data.user));
+              return true;
+            } else {
+              return false;
+            }
+          } catch (error) {
+            return false;
+          }
+        };
+        if (isAuthenticatedUser() === false) {
+          navigate("/login");
+        }
       }
+      setActivePage("Explore");
     } else if (location.pathname === "/faq") setActivePage("FAQs");
     else if (location.pathname === "/doubts") setActivePage("Doubts");
     else if (location.pathname === "/about") setActivePage("About");
     else if (location.pathname === "/my-profile") setActivePage("My Profile");
-    else setActivePage("Home");
-    console.log(location.pathname);
-  }, [location]);
+    else if (location.pathname === "/") setActivePage("Home");
+  }, [location.pathname, navigate, dispatch, user]);
 
   return (
     <div className="header">
@@ -91,11 +108,14 @@ const Header = () => {
 
       {user ? (
         <div className="my__profile__btn">
-          <AccountCircleIcon
-            style={LogoStyle}
-            onClick={() => navigate("/my-profile")}
-          />
-          <button className="cta-header" onClick={logoutHandler}>
+          <div style={{cursor: "pointer"}} className="d-flex" onClick={() => navigate("/my-profile")}>
+            <AccountCircleIcon
+              style={LogoStyle}
+            />
+            <div > {user?.name}</div>
+          </div>
+
+          <button className="cta-header--logout" onClick={logoutHandler}>
             Logout
           </button>
         </div>

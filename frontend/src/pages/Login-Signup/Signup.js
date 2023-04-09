@@ -27,22 +27,22 @@ const Signup = () => {
     try {
       const load  = {name, email,phone, password, branch, year}
 
-      const config = {
-        headers: {
-          "content-type": "application/json",
-        },
-      };
-      dispatch(showLoading());
-      const response = await axios.post("/api/v1/register",load,config);
+        const config = {
+          headers: {
+            "content-type": "application/json",
+          },
+        };
+        dispatch(showLoading());
+        const response = await axios.post("/api/v1/register",load,config);
 
-      dispatch(hideLoading());
-      if(response.data.success) {
-        toast.success(response.data.message);
-        toast("Redirecting to login page...");
-        navigate("/login");
-      }else{
-        toast.error(response.data.message);
-      }
+        dispatch(hideLoading());
+        if(response.data.success) {
+          toast.success(response.data.message);
+          toast("Redirecting to login page...");
+          navigate("/login");
+        }else{
+          toast.error(response.data.message);
+        }
     } catch (error) {
       dispatch(hideLoading());
       toast.error(error.response.data.message);

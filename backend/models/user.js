@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
       // required: [true, "Please upload a profile picture"]
     },
   },
+  institute: {
+    type: String,
+    // required: [true, "Please enter your institute"],
+  },
   branch: {
     type: String,
     required: [true, "Please enter your branch"],

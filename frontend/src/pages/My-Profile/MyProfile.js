@@ -1,27 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 import "./MyProfile.css";
-import avatarImg  from "../../images/MyProfile/avatar.png";
+import avatarImg from "../../images/MyProfile/avatar.png";
 import coverImg from "../../images/MyProfile/cover.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { hideLoading, showLoading } from "../../redux/alertSlice";
 const MyProfile = () => {
-  const prevName = "Swastik";
-  const prevEmail = "swask@gmail.com";
-  const prevPhone = "9798 XXX XXX";
-  const prevPassword = "Something";
-  const prevInstitute = "Manas Vikas";
-  const prevCourse = "B.E";
-  const prevBranch = "CSE";
-  const prevYear = "3";
-  const prevSemseter = "6";
-  const prevLinkedIn = "LinkedIn Link";
-  const prevInstagram = "Instagram Link";
-  const prevWhatsApp = "9798 XXX XXX";
-  const prevFacebook = "Facebook Link";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [institute, setInstitue] = useState("");
+  const [institute, setInstitute] = useState("");
   const [course, setCourse] = useState("");
   const [branch, setBranch] = useState("");
   const [year, setYear] = useState("");
@@ -31,9 +23,67 @@ const MyProfile = () => {
   const [whatsApp, setWhatsApp] = useState("");
   const [facebook, setFacebook] = useState("");
 
-  const submitHandler = (e) => {
+  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const submitHandler = async(e) => {
     e.preventDefault();
+    try{
+      const load = {
+        id : user._id,
+        name,
+        email,
+        phone,
+        institute,
+        course,
+        branch,
+        year,
+        semester,
+        linkedIn,
+        instagram,
+        whatsApp,
+        facebook,
+      };
+      const config = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+      dispatch(showLoading());
+      const response = await axios.put("/api/v1/me/update",load,config);
+
+      dispatch(hideLoading());
+      if(response.data.success) {
+        toast.success(response.data.message);
+      }else{
+        toast.error(response.data.message);
+      }
+    }catch(error){
+      dispatch(hideLoading());
+      toast.error(error.response.data.message);
+    }
   };
+  
+  useEffect(() => {
+    if(!user){
+      navigate("/login");
+    }else{
+      setName(user.name);
+      setEmail(user.email);
+      setPhone(user.phone);
+      setInstitute(user.institute);
+      setCourse(user.course);
+      setBranch(user.branch);
+      setYear(user.year);
+      setSemester(user.semester);
+      setLinkedIn(user.linkedIn);
+      setInstagram(user.instagram);
+      setWhatsApp(user.whatsApp);
+      setFacebook(user.facebook);
+    }
+  }, [user, navigate]);
+
   return (
     <div className="my__profile">
       <form onSubmit={submitHandler}>
@@ -45,12 +95,12 @@ const MyProfile = () => {
             <div className="profile">
               <img className="profile__img" src={avatarImg} alt="profile-img" />
               <div className="profile__name__email">
-                <h2 className="profile__name">Swastik Kumar</h2>
-                <h3 className="profile__email">contactswask@gmail.com</h3>
+                <h2 className="profile__name">{user.name}</h2>
+                <h3 className="profile__email">{user.email}</h3>
               </div>
             </div>
             <div className="buttons">
-              <button className="btn-cancle">Cancle</button>
+              <button className="btn-cancle">Cancel</button>
               <button type="submit" className="btn-save">
                 Save
               </button>
@@ -67,11 +117,11 @@ const MyProfile = () => {
                   id="name"
                   name="name"
                   value={name}
-                  size="30" 
+                  size="30"
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
-                  placeholder={prevName}
+                  placeholder="Name"
                   className="component__input"
                 />
               </div>
@@ -81,13 +131,13 @@ const MyProfile = () => {
                   type="email"
                   id="email"
                   name="email"
-                  pattern=".+@globex\.com"
+                  // pattern=".+@globex\.com"
                   size="30"
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  placeholder={prevEmail}
+                  placeholder="Email"
                   className="component__input"
                 />
               </div>
@@ -101,8 +151,8 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}
-                  placeholder={prevPhone}
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  placeholder="Phone Number"
+                  // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                   className="component__input"
                 />
               </div>
@@ -119,7 +169,7 @@ const MyProfile = () => {
                   label="Password"
                   type="password"
                   minLength="8"
-                  placeholder={prevPassword}
+                  placeholder="********"
                   className="component__input"
                 />
               </div>
@@ -136,9 +186,9 @@ const MyProfile = () => {
                   value={institute}
                   size="30"
                   onChange={(e) => {
-                    setInstitue(e.target.value);
+                    setInstitute(e.target.value);
                   }}
-                  placeholder={prevInstitute}
+                  placeholder="Institute Name"
                   className="component__input"
                 />
               </div>
@@ -152,7 +202,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setCourse(e.target.value);
                   }}
-                  placeholder={prevCourse}
+                  placeholder="Course"
                   className="component__input"
                 />
               </div>
@@ -166,7 +216,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setBranch(e.target.value);
                   }}
-                  placeholder={prevBranch}
+                  placeholder="Branch"
                   className="component__input"
                 />
               </div>
@@ -180,7 +230,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setYear(e.target.value);
                   }}
-                  placeholder={prevYear}
+                  placeholder="Year"
                   className="component__input"
                 />
               </div>
@@ -194,7 +244,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setSemester(e.target.value);
                   }}
-                  placeholder={prevSemseter}
+                  placeholder="Semester"
                   className="component__input"
                 />
               </div>
@@ -213,7 +263,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setLinkedIn(e.target.value);
                   }}
-                  placeholder={prevLinkedIn}
+                  placeholder="LinkedIn"
                   className="component__input"
                 />
               </div>
@@ -227,7 +277,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setInstagram(e.target.value);
                   }}
-                  placeholder={prevInstagram}
+                  placeholder="Instagram"
                   className="component__input"
                 />
               </div>
@@ -241,7 +291,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setWhatsApp(e.target.value);
                   }}
-                  placeholder={prevWhatsApp}
+                  placeholder="WhatsApp Number"
                   className="component__input"
                 />
               </div>
@@ -255,7 +305,7 @@ const MyProfile = () => {
                   onChange={(e) => {
                     setFacebook(e.target.value);
                   }}
-                  placeholder={prevFacebook}
+                  placeholder="Facebook"
                   className="component__input"
                 />
               </div>

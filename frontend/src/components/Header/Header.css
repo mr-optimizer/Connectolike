@@ -20,14 +20,22 @@
 
 .cta-header {
     color: white;
-    background-color: rgb(26, 5, 156);
+    background-color: var(--color-primary);
+    box-shadow: 4px 4px 8px #00000033;
+    padding: .7rem 2.5rem;
+}
+.cta-header--logout {
+    color: white;
+    background-color: var(--color-secondary);
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
     padding: .7rem 2.5rem;
 }
 
 .my__profile__btn{
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 1.3rem;
+    
 }
 
 .wh {

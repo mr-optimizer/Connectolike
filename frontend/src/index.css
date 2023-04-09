@@ -1,3 +1,13 @@
+:root{
+  --color-primary: #1a059c;
+  --color-primary-light: #1a059c;
+  --color-primary-dark: #1a059c;
+  --color-secondary: #e7b205;
+  --color-secondary-light: #1a059c;
+  --color-secondary-dark: #1a059c;
+
+  --bnt-shadow: 4px 4px 8px #00000033;
+}
 html {
   font-size: 62.5%;
 

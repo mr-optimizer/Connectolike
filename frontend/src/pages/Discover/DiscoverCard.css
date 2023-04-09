@@ -1,5 +1,6 @@
 .discover__card{
     width: 41%;
+    height: max-content;
     padding: 1.8rem;
     display: flex;
     flex-direction: column;
