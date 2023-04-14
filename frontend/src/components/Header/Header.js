@@ -11,7 +11,12 @@ import axios from "axios";
 const LogoStyle = {
   fontSize: "3rem",
   color: "rgb(20, 4, 125)",
+  cursor: "pointer",
 };
+
+const brandNameStyle = {
+  cursor: "pointer",
+}
 
 const Header = () => {
   const { user } = useSelector((state) => state.user);
@@ -59,9 +64,9 @@ const Header = () => {
 
   return (
     <div className="header">
-      <div className="d-flex">
+      <div className="d-flex" onClick={(e)=>{navigate('/')}}>
         <IntegrationInstructionsIcon style={LogoStyle} />
-        <h2 className="brand__name">&nbsp; Code Companion</h2>
+        <h2 className="brand__name" style={brandNameStyle}>&nbsp; Code Companion</h2>
       </div>
       <ul className="nav__menu">
         <Link

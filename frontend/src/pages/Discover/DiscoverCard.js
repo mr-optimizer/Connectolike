@@ -8,9 +8,11 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import dp1 from '../../images/pic1.png'
 import Skills from './Skills'
 
-
 const DiscoverCard = (props) => {
-  const skillList = props.skill;
+  const skillList = props.skillList;
+  const privateMessageButtonHandler = () => {
+    window.open('https://api.whatsapp.com/send?phone=919798447977', "_blank");
+  }
   return (
     <div className='discover__card'>
       <div className='discover__card__image'>
@@ -34,14 +36,14 @@ const DiscoverCard = (props) => {
       
       <div className='discover__card__social'>
         <div className='discover__card__social__public'>
-          <FacebookIcon className='discover__card__social__public--icons' style={{fontSize:"3rem"}}/>
-          <LinkedInIcon className='discover__card__social__public--icons'style={{fontSize:"3rem"}}/>
-          <LanguageIcon className='discover__card__social__public--icons'style={{fontSize:"3rem"}}/>
-          <GitHubIcon className='discover__card__social__public--icons'style={{fontSize:"3rem"}}/>
+          {props.facebookProfile && <a href='https://www.facebook.com/' target='_blank'> <FacebookIcon className='discover__card__social__public--icons' style={{fontSize:"3rem"}}/></a>}
+          {props.linkedinProfile  && <a href='https://www.linkedin.com/' target='_blank'> <LinkedInIcon className='discover__card__social__public--icons' style={{fontSize:"3rem"}}/></a>}
+          {props.portfolio && <a href='https://www.google.com/' target='_blank'> <LanguageIcon className='discover__card__social__public--icons' style={{fontSize:"3rem"}}/></a>}
+          {props.githubProfile && <a href='https://www.github.com/' target='_blank'> <GitHubIcon className='discover__card__social__public--icons' style={{fontSize:"3rem"}}/></a>}
         </div>
-        <div className='discover__card__social__private'>
-          <button className='discover__card__social__private--message'><WhatsAppIcon className='discover__card__social__private--icon'/> Message</button>
-        </div>
+        {props.whatsappContact && <div className='discover__card__social__private'>
+          <button className='discover__card__social__private--message' onClick={privateMessageButtonHandler}><WhatsAppIcon className='discover__card__social__private--icon'/> Message</button>
+        </div>}
       </div>
     </div>
   )

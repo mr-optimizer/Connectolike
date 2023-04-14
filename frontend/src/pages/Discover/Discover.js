@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Discover.css";
 import DiscoverCard from "./DiscoverCard";
-import CheckboxList from "../../components/Forms/CheckboxList";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -44,17 +43,26 @@ const Discover = () => {
       githubProfile: "url",
       whatsappContact: "91 720 XXXX 983",
     },
+    {
+      id: "4",
+      name: "Reshma Sharma",
+      branch: "EEE",
+      sem: "2",
+      skillList: ["ux", "ui", "ui", "c++", "java", "java", "python"],
+      facebookProfile: "url",
+      linkedinProfile: "url",
+      portfolio: "url",
+      githubProfile: "url",
+      whatsappContact: "91 720 XXXX 983",
+    },
   ];
 
-  const sectorRadioList = [
-    "Engineering",
-    "Mediacal",
-    "Commerce",
-    "BioTechnology",
-  ];
+  const [person, setPerson] = useState(persons);
+
   const semesterList = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
   const { user } = useSelector((state) => state.user);
+
 
   const navigate = useNavigate();
   const [uiux, setUIUX] = useState(false);
@@ -72,6 +80,7 @@ const Discover = () => {
   const [chemical, setChemical] = useState(false);
   const [biotech, setBiotech] = useState(false);
   const [textile, setTextile] = useState(false);
+  const [any, setAny] = useState(false);
 
   const [fromAmazon, setFromAmazon] = useState(false);
   const [fromFlipkart, setFromFlipkart] = useState(false);
@@ -87,6 +96,7 @@ const Discover = () => {
   const submitHandler = (e) => {
     e.preventDefault();
   };
+
   useEffect(() => {}, [user, navigate]);
   return (
     <div className="discover">
@@ -101,51 +111,63 @@ const Discover = () => {
               <div className="skillList">
                 <div>
                   <input
+                    id="skillUi"
+                    name="skill"
                     value="ui/ux"
                     type="checkbox"
                     onChange={() => setUIUX(true)}
                   />
-                  <span>UI/UX</span>
+                  <label for="skillUi">UI/UX</label>
                 </div>
                 <div>
                   <input
+                    id="skillWeb"
+                    name="skill"
                     value="Web-Dev"
                     type="checkbox"
                     onChange={() => setWebDev(true)}
                   />
-                  <span>Web-Dev</span>
+                  <label for="skillWeb">Web-Dev</label>
                 </div>
                 <div>
                   <input
+                    id="skillAndroid"
+                    name="skill"
                     value="Android-Dev"
                     type="checkbox"
                     onChange={() => setAndroidDev(true)}
                   />
-                  <span>Android-Dev</span>
+                  <label for="skillAndroid">Android-Dev</label>
                 </div>
                 <div>
                   <input
+                    id="skillBlockchain"
+                    name="skill"
                     value="Blockchain"
                     type="checkbox"
                     onChange={() => setBlockchain(true)}
                   />
-                  <span>Blockchain</span>
+                  <label for='skillBlockchain'>Blockchain</label>
                 </div>
                 <div>
                   <input
+                    id="skillEthical"
+                    name="skill"
                     value="Ethical-Hacking"
                     type="checkbox"
                     onChange={() => setEthicalHacking(true)}
                   />
-                  <span>Ethical-Hacking</span>
+                  <label for='skillEthical'>Ethical-Hacking</label>
                 </div>
                 <div>
                   <input
+                    id="skillSoftware"
+                    name="skill"
                     value="Software-Testing"
                     type="checkbox"
                     onChange={() => setSoftwareTesting(true)}
                   />
-                  <span>Software-Testing</span>
+                  <label for="skillSoftware">Software-Testing</label>
                 </div>
               </div>
             </div>
@@ -155,67 +177,83 @@ const Discover = () => {
               <div className="companyList">
                 <div>
                   <input
+                    name="company"
+                    id="companyAmazon"
                     value="Amazon"
                     type="radio"
                     onChange={() => setFromAmazon(true)}
                   />
-                  <span>Amazon</span>
+                  <label for="companyAmazon">Amazon</label>
                 </div>
                 <div>
                   <input
+                    name="company"
+                    id="companyFlipkart"
                     value="Flipkart"
                     type="radio"
                     onChange={() => setFromFlipkart(true)}
                   />
-                  <span>Flipkart</span>
+                  <label for="companyFlipkart">Flipkart</label>
                 </div>
                 <div>
                   <input
+                    name="company"
+                    id="companyPaytm"
                     value="Paytm"
                     type="radio"
                     onChange={() => setFromPaytm(true)}
                   />
-                  <span>Paytm</span>
+                  <label for="companyPaytm">Paytm</label>
                 </div>
                 <div>
                   <input
+                    name="company"
+                    id="companyGoogle"
                     value="Google"
                     type="radio"
                     onChange={() => setFromGoogle(true)}
                   />
-                  <span>Google</span>
+                  <label for="companyGoogle">Google</label>
                 </div>
                 <div>
                   <input
+                    name="company"
+                    id="companyMicrosoft"
                     value="Microsoft"
                     type="radio"
                     onChange={() => setFromMicrosoft(true)}
                   />
-                  <span>Microsoft</span>
+                  <label for="companyMicrosoft">Microsoft</label>
                 </div>
                 <div>
                   <input
+                    name="company"
+                    id="companyApple"
                     value="Apple"
                     type="radio"
                     onChange={() => setFromApple(true)}
                   />
-                  <span>Apple</span>
+                  <label for="companyApple">Apple</label>
                 </div>
                 <div>
                   <input
+                    name="company"
+                    id="companyFacebook"
                     value="Facebook"
                     type="radio"
                     onChange={() => setFromFacebook(true)}
                   />
-                  <span>Facebook</span>
+                  <label for="companyFacebook">Facebook</label>
                 </div>
                 <div>
                   <input
-                    value="Textile"
+                    name="company"
+                    id="companyAny"
+                    value="Any"
                     type="radio"
                     onChange={() => setFromOthers(true)}
                   />
-                  <span>Any</span>
+                  <label for="companyAny">Any</label>
                 </div>
               </div>
             </div>
@@ -225,83 +263,83 @@ const Discover = () => {
               <div className="branchList">
                 <div>
                   <input
-                    id="branch1"
+                    id="branchComputer"
                     value="Computer Science"
                     type="radio"
                     name="branch"
                     onChange={() => setCSE(true)}
                    />
-                  <label for="branch1">Computer Science</label>
+                  <label for="branchComputer">Computer Science</label>
                 </div>
                 <div>
                   <input
                     name="branch"
-                    id="branch2"
+                    id="branchMechanical"
                     value="Mechanical"
                     type="radio"
                     onChange={() => setMECH(true)}
                   />
-                  <label for="branch2">Mechanical</label>
+                  <label for="branchMechanical">Mechanical</label>
                 </div>
                 <div>
                   <input
                     name="branch"
-                    id="branch3"
+                    id="branchElectronics"
                     value="Electronics"
                     type="radio"
                     onChange={() => setECE(true)}
                   />
-                  <label for="branch3">Electronics</label>
+                  <label for="branchElectronics">Electronics</label>
                 </div>
                 <div>
                   <input
                     name="branch"
-                    id="branch4"
+                    id="branchElectrical"
                     value="Electrical"
                     type="radio"
                     onChange={() => setEEE(true)}
                   />
-                  <label for="branch4">Electrical</label>
+                  <label for="branchElectrical">Electrical</label>
                 </div>
                 <div>
                   <input
                     name="branch"
-                    id="branch5"
+                    id="branchChemical"
                     value="Chemical"
                     type="radio"
                     onChange={() => setChemical(true)}
                   />
-                  <label for="branch5">Chemical</label>
+                  <label for="branchChemical">Chemical</label>
                 </div>
                 <div>
                   <input
                     name="branch"
-                    id="branch6"
+                    id="branchBiotech"
                     value="Biotech"
                     type="radio"
                     onChange={() => setBiotech(true)}
                   />
-                  <label for="branch6">Biotech</label>
+                  <label for="branchBiotech">Biotech</label>
                 </div>
                 <div>
                   <input
                     name="branch"
-                    id="branch7"
+                    id="branchTextile"
                     value="Textile"
                     type="radio"
                     onChange={() => setTextile(true)}
                   />
-                  <label for="branch7">Textile</label>
+                  <label for="branchTextile">Textile</label>
                 </div>
                 <div>
                   <input
                     name="branch"
-                    id="branch7"
-                    value="Textile"
+                    id="branchAny"
+                    value="Any"
                     type="radio"
-                    onChange={() => setTextile(true)}
+                    onChange={() => setAny(true)}
                   />
-                  <label for="branch7">Any</label>
+                  <label for="branchAny">Any</label>
                 </div>
               </div>
             </div>
@@ -405,7 +443,12 @@ const Discover = () => {
                 name={person.name}
                 branch={person.branch}
                 sem={person.sem}
-                skill={person.skillList}
+                skillList={person.skillList}
+                facebookProfile={person.facebookProfile}
+                linkedinProfile={person.linkedinProfile}
+                portfolio={person.portfolio}
+                githubProfile={person.githubProfile}
+                whatsappContact={person.whatsappContact}
               />
             );
           })}

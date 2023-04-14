@@ -59,6 +59,10 @@
     gap: 1rem;
 }
 
+.discover__card__social__public a{
+    color: black;
+}
+
 .discover__card__social__public--icons{
     cursor: pointer;
     
