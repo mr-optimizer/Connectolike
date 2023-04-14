@@ -7,14 +7,20 @@ import coverImg from "../../images/MyProfile/cover.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
-const MyProfile = () => {
+import { setUser } from "../../redux/userSlice";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
 
+const MyProfile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [institute, setInstitute] = useState("");
-  const [course, setCourse] = useState("");
+  const [company, setCompany] = useState("");
   const [branch, setBranch] = useState("");
   const [year, setYear] = useState("");
   const [semester, setSemester] = useState("");
@@ -22,21 +28,30 @@ const MyProfile = () => {
   const [instagram, setInstagram] = useState("");
   const [whatsApp, setWhatsApp] = useState("");
   const [facebook, setFacebook] = useState("");
+  const [github, setGithub] = useState("");
+  const [portfolio, setPortfolio] = useState("");
 
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const submitHandler = async(e) => {
+  const [uiux, setUIUX] = useState(false);
+  const [webDev, setWebDev] = useState(false);
+  const [androidDev, setAndroidDev] = useState(false);
+  const [blockchain, setBlockchain] = useState(false);
+  const [ethicalHacking, setEthicalHacking] = useState(false);
+  const [softwareTesting, setSoftwareTesting] = useState(false);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    try{
+    try {
       const load = {
-        id : user._id,
+        id: user._id,
         name,
         email,
         phone,
         institute,
-        course,
+        company,
         branch,
         year,
         semester,
@@ -44,6 +59,14 @@ const MyProfile = () => {
         instagram,
         whatsApp,
         facebook,
+        github,
+        portfolio,
+        uiux,
+        webDev,
+        androidDev,
+        blockchain,
+        ethicalHacking,
+        softwareTesting,
       };
       const config = {
         headers: {
@@ -51,38 +74,63 @@ const MyProfile = () => {
         },
       };
       dispatch(showLoading());
-      const response = await axios.put("/api/v1/me/update",load,config);
+      const response = await axios.put("/api/v1/me/update", load, config);
 
       dispatch(hideLoading());
-      if(response.data.success) {
+      if (response.data.success) {
+        dispatch(setUser(response.data.user));
         toast.success(response.data.message);
-      }else{
+      } else {
         toast.error(response.data.message);
       }
-    }catch(error){
+    } catch (error) {
       dispatch(hideLoading());
       toast.error(error.response.data.message);
     }
   };
-  
+
   useEffect(() => {
-    if(!user){
-      navigate("/login");
-    }else{
+    if (!user) {
+      const isAuthenticatedUser = async () => {
+        try {
+          const response = await axios.get("/api/v1/isAuthenticatedUser");
+          if (response.data.success) {
+            dispatch(setUser(response.data.user));
+            return true;
+          } else {
+            return false;
+          }
+        } catch (error) {
+          return false;
+        }
+      };
+      if (isAuthenticatedUser() === false) {
+        navigate("/login");
+      }
+    } else {
       setName(user.name);
       setEmail(user.email);
       setPhone(user.phone);
       setInstitute(user.institute);
-      setCourse(user.course);
+      setCompany(user.company);
       setBranch(user.branch);
       setYear(user.year);
-      setSemester(user.semester);
+      setSemester(user.sem);
       setLinkedIn(user.linkedIn);
       setInstagram(user.instagram);
       setWhatsApp(user.whatsApp);
       setFacebook(user.facebook);
+      setGithub(user.github);
+      setPortfolio(user.portfolio);
+      setUIUX(user.uiux);
+      setWebDev(user.webDev);
+      setAndroidDev(user.androidDev);
+      setBlockchain(user.blockchain);
+      setEthicalHacking(user.ethicalHacking);
+      setSoftwareTesting(user.softwareTesting);
+
     }
-  }, [user, navigate]);
+  }, [user, navigate, dispatch]);
 
   return (
     <div className="my__profile">
@@ -95,8 +143,8 @@ const MyProfile = () => {
             <div className="profile">
               <img className="profile__img" src={avatarImg} alt="profile-img" />
               <div className="profile__name__email">
-                <h2 className="profile__name">{user.name}</h2>
-                <h3 className="profile__email">{user.email}</h3>
+                <h2 className="profile__name">{user?.name}</h2>
+                <h3 className="profile__email">{user?.email}</h3>
               </div>
             </div>
             <div className="buttons">
@@ -113,65 +161,81 @@ const MyProfile = () => {
             <div className="personal__details__component">
               <div className="component">
                 <p className="component__lable">Name : </p>
-                <input
-                  id="name"
-                  name="name"
-                  value={name}
-                  size="30"
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                  placeholder="Name"
-                  className="component__input"
-                />
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              label="Name"
+            />
               </div>
               <div className="component">
                 <p className="component__lable">Email : </p>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  // pattern=".+@globex\.com"
-                  size="30"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  placeholder="Email"
-                  className="component__input"
-                />
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              type="email"
+              id="email"
+              name="email"
+              pattern=".+@globex\.com"
+              size="30"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              label="Email"
+            />
               </div>
               <div className="component">
-                <p className="component__lable">Phone Number : </p>
-                <input
-                  id="phone"
-                  name="phone"
-                  value={phone}
-                  size="30"
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                  }}
-                  placeholder="Phone Number"
-                  // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                  className="component__input"
-                />
+                <p className="component__lable">Phone : </p>
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="phone"
+              name="phone"
+              value={phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
+              label="Phone"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            />
               </div>
               <div className="component">
                 <p className="component__lable">Password : </p>
-                <input
-                  id="password"
-                  name="password"
-                  value={password}
-                  size="30"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  label="Password"
-                  type="password"
-                  minLength="8"
-                  placeholder="********"
-                  className="component__input"
-                />
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              label="Password"
+              minLength="8"
+              type="password"
+            />
               </div>
             </div>
           </div>
@@ -180,74 +244,219 @@ const MyProfile = () => {
             <div className="professional__details__component">
               <div className="component">
                 <p className="component__lable">Institute Name : </p>
-                <input
+                <FormControl
+                sx={{
+                  width: { xs: 200, sm: 300, md: 400 },
+                  "& .MuiInputBase-root": {
+                    height: 50,
+                  },
+                }}
+              >
+                <InputLabel id="institute-label">Institute</InputLabel>
+                <Select
+                  labelId="institute-label"
                   id="institute"
-                  name="institute"
                   value={institute}
-                  size="30"
+                  label="Institute"
                   onChange={(e) => {
                     setInstitute(e.target.value);
                   }}
-                  placeholder="Institute Name"
-                  className="component__input"
-                />
+                >
+                  <MenuItem value={"CU"}>Chandigarh University</MenuItem>
+                  <MenuItem value={"NITJ"}>National Institute of Technolgy Jalandhar</MenuItem>
+                  <MenuItem value={"ANY"}>Any</MenuItem>
+                </Select>
+              </FormControl>
               </div>
               <div className="component">
-                <p className="component__lable">Course : </p>
-                <input
-                  id="course"
-                  name="course"
-                  value={course}
-                  size="30"
-                  onChange={(e) => {
-                    setCourse(e.target.value);
-                  }}
-                  placeholder="Course"
-                  className="component__input"
-                />
+                <p className="component__lable">Company : </p>
+                <FormControl sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}>
+              <InputLabel id="company-label">Company</InputLabel>
+              <Select
+                labelId="company-label"
+                id="company"
+                value={company}
+                label="company"
+                onChange={(e) => {
+                  setCompany(e.target.value);
+                }}
+              >
+                <MenuItem value={"AMAZON"}>Amazon</MenuItem>
+                <MenuItem value={"APPLE"}>Apple</MenuItem>
+                <MenuItem value={"FACEBOOK"}>Facebook</MenuItem>
+                <MenuItem value={"FLIPKART"}>Flipkart</MenuItem>
+                <MenuItem value={"GOOGLE"}>Google</MenuItem>
+                <MenuItem value={"MICROSOFT"}>Microsoft</MenuItem>
+                <MenuItem value={"PAYTM"}>Paytm</MenuItem>
+                <MenuItem value={"ANY"}>Any</MenuItem>
+              </Select>
+            </FormControl>
               </div>
               <div className="component">
                 <p className="component__lable">Branch : </p>
-                <input
+                <FormControl
+                sx={{
+                  width: { xs: 200, sm: 300, md: 400 },
+                  "& .MuiInputBase-root": {
+                    height: 50,
+                  },
+                }}
+              >
+                <InputLabel id="branch-label">Branch</InputLabel>
+                <Select
+                  labelId="branch-label"
                   id="branch"
-                  name="branch"
                   value={branch}
-                  size="30"
+                  label="branch"
                   onChange={(e) => {
                     setBranch(e.target.value);
                   }}
-                  placeholder="Branch"
-                  className="component__input"
-                />
+                >
+                  <MenuItem value={"CSE"}>Computer Science</MenuItem>
+                  <MenuItem value={"ME"}>Mechanical</MenuItem>
+                  <MenuItem value={"ECE"}>Electronics</MenuItem>
+                  <MenuItem value={"EEE"}>Electrical</MenuItem>
+                  <MenuItem value={"CHEM"}>Chemical</MenuItem>
+                  <MenuItem value={"BIOTECH"}>Bio. Technology</MenuItem>
+                  <MenuItem value={"TXT"}>Textile</MenuItem>
+                  <MenuItem value={"ANY"}>Any</MenuItem>
+                </Select>
+              </FormControl>
               </div>
               <div className="component">
                 <p className="component__lable">Year : </p>
-                <input
+                <FormControl
+                sx={{
+                  width: { xs: 100, sm: 300, md: 400 },
+                  "& .MuiInputBase-root": {
+                    height: 50,
+                  },
+                }}
+              >
+                <InputLabel id="year-label">Sem</InputLabel>
+                <Select
+                  labelId="year-label"
                   id="year"
-                  name="year"
                   value={year}
-                  size="30"
+                  label="year"
                   onChange={(e) => {
                     setYear(e.target.value);
                   }}
-                  placeholder="Year"
-                  className="component__input"
-                />
+                >
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>Pass Out</MenuItem>
+                </Select>
+              </FormControl>
               </div>
               <div className="component">
                 <p className="component__lable">Semseter : </p>
-                <input
-                  id="semester"
-                  name="semester"
-                  size="30"
+                <FormControl
+                sx={{
+                  width: { xs: 100, sm: 300, md: 400 },
+                  "& .MuiInputBase-root": {
+                    height: 50,
+                  },
+                }}
+              >
+                <InputLabel id="sem-label">Sem</InputLabel>
+                <Select
+                  labelId="sem-label"
+                  id="sem"
                   value={semester}
+                  label="sem"
                   onChange={(e) => {
                     setSemester(e.target.value);
                   }}
-                  placeholder="Semester"
-                  className="component__input"
-                />
+                >
+                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem value={2}>2</MenuItem>
+                  <MenuItem value={3}>3</MenuItem>
+                  <MenuItem value={4}>4</MenuItem>
+                  <MenuItem value={5}>5</MenuItem>
+                  <MenuItem value={6}>6</MenuItem>
+                  <MenuItem value={7}>7</MenuItem>
+                  <MenuItem value={8}>8</MenuItem>
+                  <MenuItem value={9}>Pass Out</MenuItem>
+                </Select>
+              </FormControl>
               </div>
+              <div className=" u-margin-top-small component">
+              <p className="component__lable">Skills : </p>
+              <div className="skills__container__my__profile">
+              <input
+                id="skillWeb"
+                name="skill"
+                value={webDev}
+                checked= {webDev}
+                type="checkbox"
+                onChange={(e) => setWebDev(e.target.checked)}
+              />
+              <label for="skillWeb">WebDev</label>
+              <input
+                id="skillAndroid"
+                name="skill"
+                value={androidDev}
+                type="checkbox"
+                checked= {androidDev}
+                onChange={(e) => setAndroidDev(e.target.checked)}
+              />
+              <label for="skillAndroid">Android</label>
+              <input
+                id="skillSoftware"
+                name="skill"
+                value="Software-Testing"
+                type="checkbox"
+                checked= {softwareTesting}
+                onChange={(e) => setSoftwareTesting(e.target.checked)}
+              />
+              <label for="skillSoftware">SoftwareTesting</label>
+            </div>
+            </div>
+              <div className="component">
+              <p className="component__lable"></p>
+              <div className="skills__container__my__profile">
+              <input
+                id="skillUi"
+                name="skill"
+                value="ui/ux"
+                type="checkbox"
+                checked= {uiux}
+                onChange={(e) => setUIUX(e.target.checked)}
+              />
+              <label for="skillUi">UI/UX</label>
+              <input
+                id="skillBlockchain"
+                name="skill"
+                value="Blockchain"
+                type="checkbox"
+                checked= {blockchain}
+                onChange={(e) => setBlockchain(e.target.checked)}
+              />
+              <label for="skillBlockchain">Blockchain</label>
+              <input
+                id="skillEthical"
+                name="skill"
+                value={ethicalHacking}
+                type="checkbox"
+                checked= {ethicalHacking}
+                onChange={(e) => setEthicalHacking(e.target.checked)}
+              />
+              <label for="skillEthical">Ethical-Hacking</label>
+              
+            </div>
+            </div>
             </div>
           </div>
           <div className="social__details">
@@ -255,59 +464,112 @@ const MyProfile = () => {
             <div className="social__details__component">
               <div className="component">
                 <p className="component__lable">LinkedIn : </p>
-                <input
-                  id="linkedIn"
-                  name="linkedIn"
-                  value={linkedIn}
-                  size="30"
-                  onChange={(e) => {
-                    setLinkedIn(e.target.value);
-                  }}
-                  placeholder="LinkedIn"
-                  className="component__input"
-                />
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="linkedIn"
+              name="linkedIn"
+              value={linkedIn}
+              onChange={(e) => {
+                setLinkedIn(e.target.value);
+              }}
+              label="LinkedIn"
+            />
               </div>
               <div className="component">
                 <p className="component__lable">Instagram : </p>
-                <input
-                  id="instagram"
-                  name="instagram"
-                  value={instagram}
-                  size="30"
-                  onChange={(e) => {
-                    setInstagram(e.target.value);
-                  }}
-                  placeholder="Instagram"
-                  className="component__input"
-                />
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="instagram"
+              name="instagram"
+              value={instagram}
+              onChange={(e) => {
+                setInstagram(e.target.value);
+              }}
+              label="Instagram"
+            />
               </div>
               <div className="component">
-                <p className="component__lable">WhatsApp Number : </p>
-                <input
-                  id="whatsApp"
-                  name="whatsApp"
-                  value={whatsApp}
-                  size="30"
-                  onChange={(e) => {
-                    setWhatsApp(e.target.value);
-                  }}
-                  placeholder="WhatsApp Number"
-                  className="component__input"
-                />
+                <p className="component__lable">WhatsApp : </p>
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="whatsApp"
+              name="whatsApp"
+              value={whatsApp}
+              onChange={(e) => {
+                setWhatsApp(e.target.value);
+              }}
+              label="WhatsApp"
+            />
               </div>
               <div className="component">
                 <p className="component__lable">Facebook : </p>
-                <input
-                  id="facebook"
-                  name="facebook"
-                  value={facebook}
-                  size="30"
-                  onChange={(e) => {
-                    setFacebook(e.target.value);
-                  }}
-                  placeholder="Facebook"
-                  className="component__input"
-                />
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="facebook"
+              name="facebook"
+              value={facebook}
+              // type={'url'}
+              onChange={(e) => {
+                setFacebook(e.target.value);
+              }}
+              label="Facebook"
+            />
+              </div>
+              <div className="component">
+                <p className="component__lable">Github : </p>
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="github"
+              name="github"
+              value={github}
+              onChange={(e) => {
+                setGithub(e.target.value);
+              }}
+              label="Github"
+            />
+              </div>
+              <div className="component">
+                <p className="component__lable">Portfolio : </p>
+                <TextField
+              sx={{
+                width: { xs: 300, sm: 400, md: 400 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="portfolio"
+              name="portfolio"
+              value={portfolio}
+              onChange={(e) => {
+                setPortfolio(e.target.value);
+              }}
+              label="Portfolio"
+            />
               </div>
             </div>
           </div>

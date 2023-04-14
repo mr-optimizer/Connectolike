@@ -72,12 +72,16 @@
 .personal__details, .professional__details, .social__details {
     padding: 0 4rem;
     margin: 3rem 0;
-    width: 60rem;
+    width: 65rem;
     
 }
 
 .personal__details__component, .professional__details__component, .social__details__component{
     padding: 0 4rem;
+    display: flex;
+    /* width: 100%; */
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .heading__section{
@@ -86,12 +90,20 @@
 .component{
     display: flex;
     align-items: center;
+    width: 100%;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 4rem;
 }
 
 .component__lable{
     margin: .6rem;
     font-size: 1.3rem;
     font-weight: 500;
+}
+
+.skills__container__my__profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
 }

@@ -148,14 +148,14 @@ const Signup = () => {
                   setCompany(e.target.value);
                 }}
               >
-                <MenuItem value={"Amazon"}>Amazon</MenuItem>
-                <MenuItem value={"Apple"}>Apple</MenuItem>
-                <MenuItem value={"Facebook"}>Facebook</MenuItem>
-                <MenuItem value={"Flipkart"}>Flipkart</MenuItem>
-                <MenuItem value={"Google"}>Google</MenuItem>
-                <MenuItem value={"Microsoft"}>Microsoft</MenuItem>
-                <MenuItem value={"Paytm"}>Paytm</MenuItem>
-                <MenuItem value={"Any"}>Any</MenuItem>
+                <MenuItem value={"AMAZON"}>Amazon</MenuItem>
+                <MenuItem value={"APPLE"}>Apple</MenuItem>
+                <MenuItem value={"FACEBOOK"}>Facebook</MenuItem>
+                <MenuItem value={"FLIPKART"}>Flipkart</MenuItem>
+                <MenuItem value={"GOOGLE"}>Google</MenuItem>
+                <MenuItem value={"MICROSOFT"}>Microsoft</MenuItem>
+                <MenuItem value={"PAYTM"}>Paytm</MenuItem>
+                <MenuItem value={"ANY"}>Any</MenuItem>
               </Select>
             </FormControl>
             <div className="d-flex">

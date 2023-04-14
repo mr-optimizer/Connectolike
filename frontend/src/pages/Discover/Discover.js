@@ -1,100 +1,66 @@
 import React, { useEffect, useState } from "react";
 import "./Discover.css";
 import DiscoverCard from "./DiscoverCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormGroup from "@mui/material/FormGroup";
+import Checkbox from "@mui/material/Checkbox";
+import { toast } from "react-hot-toast";
 
 const Discover = () => {
-  const persons = [
-    {
-      id: "1",
-      name: "Anjali Singh",
-      branch: "CSE",
-      sem: "5",
-      skillList: ["ux", "ui", "c++", "java", "python"],
-      facebookProfile: "url",
-      linkedinProfile: "url",
-      portfolio: "url",
-      githubProfile: "url",
-      whatsappContact: "91 720 XXXX 983",
-    },
-    {
-      id: "2",
-      name: "Pawan Pandey",
-      branch: "BCA",
-      sem: "7",
-      skillList: ["ux2", "ui2", "c++2", "java2", "python2"],
-      facebookProfile: "url",
-      linkedinProfile: "url",
-      portfolio: "url",
-      githubProfile: "url",
-      whatsappContact: "91 720 XXXX 983",
-    },
-    {
-      id: "3",
-      name: "Akshay Sai",
-      branch: "Physics",
-      sem: "8",
-      skillList: ["python3", "java3", "c++3", "java3", "python3"],
-      facebookProfile: "url",
-      linkedinProfile: "url",
-      portfolio: "url",
-      githubProfile: "url",
-      whatsappContact: "91 720 XXXX 983",
-    },
-    {
-      id: "4",
-      name: "Reshma Sharma",
-      branch: "EEE",
-      sem: "2",
-      skillList: ["ux", "ui", "ui", "c++", "java", "java", "python"],
-      facebookProfile: "url",
-      linkedinProfile: "url",
-      portfolio: "url",
-      githubProfile: "url",
-      whatsappContact: "91 720 XXXX 983",
-    },
-  ];
-
-  const [person, setPerson] = useState(persons);
-
-  const semesterList = ["1", "2", "3", "4", "5", "6", "7", "8"];
-
   const { user } = useSelector((state) => state.user);
 
-
   const navigate = useNavigate();
+
   const [uiux, setUIUX] = useState(false);
   const [webDev, setWebDev] = useState(false);
   const [androidDev, setAndroidDev] = useState(false);
   const [blockchain, setBlockchain] = useState(false);
   const [ethicalHacking, setEthicalHacking] = useState(false);
   const [softwareTesting, setSoftwareTesting] = useState(false);
+  const [branch, setBranch] = useState("ANY");
+  const [semester, setSemester] = useState(0);
+  const [company, setCompany] = useState("ANY");
 
-  const [cse, setCSE] = useState(false);
-  const [ece, setECE] = useState(false);
-  const [mech, setMECH] = useState(false);
-  const [civil, setCivil] = useState(false);
-  const [eee, setEEE] = useState(false);
-  const [chemical, setChemical] = useState(false);
-  const [biotech, setBiotech] = useState(false);
-  const [textile, setTextile] = useState(false);
-  const [any, setAny] = useState(false);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
-  const [fromAmazon, setFromAmazon] = useState(false);
-  const [fromFlipkart, setFromFlipkart] = useState(false);
-  const [fromPaytm, setFromPaytm] = useState(false);
-  const [fromGoogle, setFromGoogle] = useState(false);
-  const [fromMicrosoft, setFromMicrosoft] = useState(false);
-  const [fromApple, setFromApple] = useState(false);
-  const [fromFacebook, setFromFacebook] = useState(false);
-  const [fromOthers, setFromOthers] = useState(false);
-
-  const [semester, setSemester] = useState(1);
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    try {
+      const query = {};
+      if (semester !== 0) query.sem = Number(semester);
+      if (branch !== "ANY") query.branch = branch;
+      if (company !== "ANY") query.company = company;
+      if (uiux) query.uiux = uiux;
+      if (webDev) query.webDev = webDev;
+      if (androidDev) query.androidDev = androidDev;
+      if (blockchain) query.blockchain = blockchain;
+      if (ethicalHacking) query.ethicalHacking = ethicalHacking;
+      if (softwareTesting) query.softwareTesting = softwareTesting;
+
+      const config = {
+        headers: {
+          "content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/v1/filtered-users",
+        query,
+        config
+      );
+      if (data.users.length === 0) {
+        toast.error("No users found ");
+      } else {
+        setFilteredUsers(data.users);
+      }
+      console.log(data.users);
+    } catch (error) {}
   };
 
   useEffect(() => {}, [user, navigate]);
@@ -109,323 +75,194 @@ const Discover = () => {
             <div className="filter__container">
               <h3>Skills</h3>
               <div className="skillList">
-                <div>
-                  <input
-                    id="skillUi"
-                    name="skill"
-                    value="ui/ux"
-                    type="checkbox"
-                    onChange={() => setUIUX(true)}
+                <FormGroup>
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="UI/UX"
+                    onClick={(e) => {
+                      setUIUX(e.target.checked);
+                    }}
                   />
-                  <label for="skillUi">UI/UX</label>
-                </div>
-                <div>
-                  <input
-                    id="skillWeb"
-                    name="skill"
-                    value="Web-Dev"
-                    type="checkbox"
-                    onChange={() => setWebDev(true)}
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="Web Development"
+                    onClick={(e) => {
+                      setWebDev(e.target.checked);
+                    }}
                   />
-                  <label for="skillWeb">Web-Dev</label>
-                </div>
-                <div>
-                  <input
-                    id="skillAndroid"
-                    name="skill"
-                    value="Android-Dev"
-                    type="checkbox"
-                    onChange={() => setAndroidDev(true)}
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="Android Development"
+                    onClick={(e) => {
+                      setAndroidDev(e.target.checked);
+                    }}
                   />
-                  <label for="skillAndroid">Android-Dev</label>
-                </div>
-                <div>
-                  <input
-                    id="skillBlockchain"
-                    name="skill"
-                    value="Blockchain"
-                    type="checkbox"
-                    onChange={() => setBlockchain(true)}
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="Blockchain Development"
+                    onClick={(e) => {
+                      setBlockchain(e.target.checked);
+                    }}
                   />
-                  <label for='skillBlockchain'>Blockchain</label>
-                </div>
-                <div>
-                  <input
-                    id="skillEthical"
-                    name="skill"
-                    value="Ethical-Hacking"
-                    type="checkbox"
-                    onChange={() => setEthicalHacking(true)}
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="Ethical Hacking"
+                    onClick={(e) => {
+                      setEthicalHacking(e.target.checked);
+                    }}
                   />
-                  <label for='skillEthical'>Ethical-Hacking</label>
-                </div>
-                <div>
-                  <input
-                    id="skillSoftware"
-                    name="skill"
-                    value="Software-Testing"
-                    type="checkbox"
-                    onChange={() => setSoftwareTesting(true)}
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label="Software Testing"
+                    onClick={(e) => {
+                      setSoftwareTesting(e.target.checked);
+                    }}
                   />
-                  <label for="skillSoftware">Software-Testing</label>
-                </div>
+                </FormGroup>
               </div>
             </div>
 
             <div className="filter__container">
               <h3>Company</h3>
               <div className="companyList">
-                <div>
-                  <input
-                    name="company"
-                    id="companyAmazon"
-                    value="Amazon"
-                    type="radio"
-                    onChange={() => setFromAmazon(true)}
-                  />
-                  <label for="companyAmazon">Amazon</label>
-                </div>
-                <div>
-                  <input
-                    name="company"
-                    id="companyFlipkart"
-                    value="Flipkart"
-                    type="radio"
-                    onChange={() => setFromFlipkart(true)}
-                  />
-                  <label for="companyFlipkart">Flipkart</label>
-                </div>
-                <div>
-                  <input
-                    name="company"
-                    id="companyPaytm"
-                    value="Paytm"
-                    type="radio"
-                    onChange={() => setFromPaytm(true)}
-                  />
-                  <label for="companyPaytm">Paytm</label>
-                </div>
-                <div>
-                  <input
-                    name="company"
-                    id="companyGoogle"
-                    value="Google"
-                    type="radio"
-                    onChange={() => setFromGoogle(true)}
-                  />
-                  <label for="companyGoogle">Google</label>
-                </div>
-                <div>
-                  <input
-                    name="company"
-                    id="companyMicrosoft"
-                    value="Microsoft"
-                    type="radio"
-                    onChange={() => setFromMicrosoft(true)}
-                  />
-                  <label for="companyMicrosoft">Microsoft</label>
-                </div>
-                <div>
-                  <input
-                    name="company"
-                    id="companyApple"
-                    value="Apple"
-                    type="radio"
-                    onChange={() => setFromApple(true)}
-                  />
-                  <label for="companyApple">Apple</label>
-                </div>
-                <div>
-                  <input
-                    name="company"
-                    id="companyFacebook"
-                    value="Facebook"
-                    type="radio"
-                    onChange={() => setFromFacebook(true)}
-                  />
-                  <label for="companyFacebook">Facebook</label>
-                </div>
-                <div>
-                  <input
-                    name="company"
-                    id="companyAny"
-                    value="Any"
-                    type="radio"
-                    onChange={() => setFromOthers(true)}
-                  />
-                  <label for="companyAny">Any</label>
-                </div>
+                <FormControl>
+                  <RadioGroup
+                    aria-labelledby="demo-controlled-radio-buttons-group"
+                    name="controlled-radio-buttons-group"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                  >
+                    <FormControlLabel
+                      value="AMAZON"
+                      control={<Radio />}
+                      label="Amazon"
+                    />
+                    <FormControlLabel
+                      value="APPLE"
+                      control={<Radio />}
+                      label="Apple"
+                    />
+                    <FormControlLabel
+                      value="FACEBOOK"
+                      control={<Radio />}
+                      label="Facebook"
+                    />
+                    <FormControlLabel
+                      value="FLIPKART"
+                      control={<Radio />}
+                      label="Flipkart"
+                    />
+                    <FormControlLabel
+                      value="GOOGLE"
+                      control={<Radio />}
+                      label="Google"
+                    />
+                    <FormControlLabel
+                      value="MICROSOFT"
+                      control={<Radio />}
+                      label="Microsoft"
+                    />
+                    <FormControlLabel
+                      value="PAYTM"
+                      control={<Radio />}
+                      label="Paytm"
+                    />
+                    <FormControlLabel
+                      value="ANY"
+                      control={<Radio />}
+                      label="Any"
+                      defaultChecked
+                    />
+                  </RadioGroup>
+                </FormControl>
               </div>
             </div>
 
             <div className="filter__container">
               <h3>Branch</h3>
               <div className="branchList">
-                <div>
-                  <input
-                    id="branchComputer"
-                    value="Computer Science"
-                    type="radio"
-                    name="branch"
-                    onChange={() => setCSE(true)}
-                   />
-                  <label for="branchComputer">Computer Science</label>
-                </div>
-                <div>
-                  <input
-                    name="branch"
-                    id="branchMechanical"
-                    value="Mechanical"
-                    type="radio"
-                    onChange={() => setMECH(true)}
-                  />
-                  <label for="branchMechanical">Mechanical</label>
-                </div>
-                <div>
-                  <input
-                    name="branch"
-                    id="branchElectronics"
-                    value="Electronics"
-                    type="radio"
-                    onChange={() => setECE(true)}
-                  />
-                  <label for="branchElectronics">Electronics</label>
-                </div>
-                <div>
-                  <input
-                    name="branch"
-                    id="branchElectrical"
-                    value="Electrical"
-                    type="radio"
-                    onChange={() => setEEE(true)}
-                  />
-                  <label for="branchElectrical">Electrical</label>
-                </div>
-                <div>
-                  <input
-                    name="branch"
-                    id="branchChemical"
-                    value="Chemical"
-                    type="radio"
-                    onChange={() => setChemical(true)}
-                  />
-                  <label for="branchChemical">Chemical</label>
-                </div>
-                <div>
-                  <input
-                    name="branch"
-                    id="branchBiotech"
-                    value="Biotech"
-                    type="radio"
-                    onChange={() => setBiotech(true)}
-                  />
-                  <label for="branchBiotech">Biotech</label>
-                </div>
-                <div>
-                  <input
-                    name="branch"
-                    id="branchTextile"
-                    value="Textile"
-                    type="radio"
-                    onChange={() => setTextile(true)}
-                  />
-                  <label for="branchTextile">Textile</label>
-                </div>
-                <div>
-                  <input
-                    name="branch"
-                    id="branchAny"
-                    value="Any"
-                    type="radio"
-                    onChange={() => setAny(true)}
-                  />
-                  <label for="branchAny">Any</label>
-                </div>
+                <FormControl>
+                  <RadioGroup
+                    aria-labelledby="demo-controlled-radio-buttons-group"
+                    name="controlled-radio-buttons-group"
+                    value={branch}
+                    onChange={(e) => setBranch(e.target.value)}
+                  >
+                    <FormControlLabel
+                      value="CSE"
+                      control={<Radio />}
+                      label="Computer Science"
+                    />
+                    <FormControlLabel
+                      value="ME"
+                      control={<Radio />}
+                      label="Mechanical"
+                    />
+                    <FormControlLabel
+                      value="ECE"
+                      control={<Radio />}
+                      label="Electronics"
+                    />
+                    <FormControlLabel
+                      value="EEE"
+                      control={<Radio />}
+                      label="Electrical"
+                    />
+                    <FormControlLabel
+                      value="CHEM"
+                      control={<Radio />}
+                      label="Chemical"
+                    />
+                    <FormControlLabel
+                      value="BIOTECH"
+                      control={<Radio />}
+                      label="Biotech"
+                    />
+                    <FormControlLabel
+                      value="TXT"
+                      control={<Radio />}
+                      label="Textile"
+                    />
+                    <FormControlLabel
+                      value="ANY"
+                      control={<Radio />}
+                      label="Any"
+                      defaultChecked
+                    />
+                  </RadioGroup>
+                </FormControl>
               </div>
             </div>
 
             <div className="filter__container">
               <h3>Semester</h3>
-              <div>
-                <input
-                  id="semester1"
-                  value="1"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(1)}
-                />
-                <label for="semester1">Sem 1</label>
-              </div>
-              <div>
-                <input
-                  id="semester2"
-                  value="2"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(2)}
-                />
-                <label for="semester2">Sem 2</label>
-              </div>
-              <div>
-                <input
-                  id="semester3"
-                  value="3"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(3)}
-                />
-                <label for="semester3">Sem 3</label>
-              </div>
-              <div>
-                <input
-                  id="semester4"
-                  value="4"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(4)}
-                />
-                <label for="semester4">Sem 4</label>
-              </div>
-              <div>
-                <input
-                  id="semester5"
-                  value="5"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(5)}
-                />
-                <label for="semester5">Sem 5</label>
-              </div>
-              <div>
-                <input
-                  id="semester6"
-                  value="6"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(6)}
-                />
-                <label for="semester6">Sem 6</label>
-              </div>
-              <div>
-                <input
-                  id="semester7"
-                  value="7"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(7)}
-                />
-                <label for="semester7">Sem 7</label>
-              </div>
-              <div>
-                <input
-                  id="semester8"
-                  value="8"
-                  type="radio"
-                  name="semester"
-                  onChange={() => setSemester(8)}
-                />
-                <label for="semester8">Sem 8</label>
-              </div>
+              <FormControl>
+                <RadioGroup
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  value={semester}
+                  onChange={(e) => setSemester(e.target.value)}
+                >
+                  <FormControlLabel value={1} control={<Radio />} label="1" />
+                  <FormControlLabel value={2} control={<Radio />} label="2" />
+                  <FormControlLabel value={3} control={<Radio />} label="3" />
+                  <FormControlLabel value={4} control={<Radio />} label="4" />
+                  <FormControlLabel value={5} control={<Radio />} label="5" />
+                  <FormControlLabel value={6} control={<Radio />} label="6" />
+                  <FormControlLabel value={7} control={<Radio />} label="7" />
+                  <FormControlLabel value={8} control={<Radio />} label="8" />
+                  <FormControlLabel
+                    value={9}
+                    control={<Radio />}
+                    label="Pass Out"
+                  />
+                  <FormControlLabel
+                    value={0}
+                    control={<Radio />}
+                    label="Any"
+                  />
+                </RadioGroup>
+              </FormControl>
             </div>
 
             <button className="search-btn u-margin-top-medium " type="submit">
@@ -435,20 +272,25 @@ const Discover = () => {
         </div>
 
         <div className="right-contents">
-          {persons.map((person, index) => {
+          {filteredUsers?.map((person, index) => {
             return (
               <DiscoverCard
                 key={index}
-                id={person.id}
-                name={person.name}
-                branch={person.branch}
-                sem={person.sem}
-                skillList={person.skillList}
-                facebookProfile={person.facebookProfile}
-                linkedinProfile={person.linkedinProfile}
-                portfolio={person.portfolio}
-                githubProfile={person.githubProfile}
-                whatsappContact={person.whatsappContact}
+                id={person?.id}
+                name={person?.name}
+                branch={person?.branch}
+                sem={person?.sem}
+                uiux={person?.uiux}
+                webDev={person?.webDev}
+                androidDev={person?.androidDev}
+                blockchain={person?.blockchain}
+                ethicalHacking={person?.ethicalHacking}
+                softwareTesting={person?.softwareTesting}
+                facebook={person?.facebook}
+                linkedIn={person?.linkedIn}
+                portfolio={person?.portfolio}
+                github={person?.github}
+                whatsApp={person?.whatsApp}
               />
             );
           })}

@@ -45,20 +45,57 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your branch"],
   },
+  sem: {
+    type: Number,
+    required: [true, "Please enter your semester"],
+  },
   year: {
     type: Number,
-    required: [true, "Please enter your year"],
+    // required: [true, "Please enter your year"],
   },
-  skills: {
-    type: [],
+  uiux: {
+    type: Boolean,
+    default: false,
+  },
+  webDev: {
+    type: Boolean,
+    default: false,
+  },
+  androidDev: {
+    type: Boolean,
+    default: false,
+  },
+  blockchain: {
+    type: Boolean,
+    default: false,
+  },
+  ethicalHacking: {
+    type: Boolean,
+    default: false,
+  },
+  softwareTesting: {
+    type: Boolean,
+    default: false,
   },
   company: {
     type: String,
   },
-  linkedin: {
+  linkedIn: {
     type: String,
   },
   github: {
+    type: String,
+  },
+  whatsApp: {
+    type: String,
+  },
+  instagram: {
+    type: String,
+  },
+  facebook: {
+    type: String,
+  },
+  portfolio: {
     type: String,
   },
   createdAt: {
@@ -92,15 +129,17 @@ userSchema.methods.getJwtToken = function () {
 // Generating password reset token
 userSchema.methods.getResetPasswordToken = function () {
   // generate new password reset token from crypto
-  const resetToken = crypto.randomBytes(20).toString('hex');
+  const resetToken = crypto.randomBytes(20).toString("hex");
 
   // Hash the resetToken and assign to user's resetPasswordToken
-  this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+  this.resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
 
   // setting token expire time to 30min
-  this.resetPasswordExpires = Date.now() + 30*60*1000;
+  this.resetPasswordExpires = Date.now() + 30 * 60 * 1000;
   return resetToken;
-
-}
+};
 
 module.exports = mongoose.model("User", userSchema);

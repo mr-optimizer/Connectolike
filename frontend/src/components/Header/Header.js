@@ -42,7 +42,7 @@ const Header = () => {
 
 
   useEffect(() => {
-    if (location.pathname === "/discover") {
+    if (location.pathname === "/discover" || location.pathname === '/my-profile') {
       if (!user) {
         const isAuthenticatedUser = async () => {
           try {
