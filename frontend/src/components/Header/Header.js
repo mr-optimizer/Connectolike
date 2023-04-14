@@ -26,11 +26,18 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let location = useLocation();
-  const logoutHandler = () => {
+  const logoutHandler = async() => {
     localStorage.removeItem("token");
-    dispatch(setUser(null));
-    toast.success("Logged out successfully");
-    navigate("/login");
+    try {
+      const response = await axios.get("/api/v1/logout");
+      if (response.data.success) {
+        dispatch(setUser(null));
+        toast.success("Logged out successfully");
+        navigate("/login");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
   };
 
 

@@ -79,7 +79,6 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-
 // Get Filtered Users     =>  /api/v1/filtered-users
 exports.getFilteredUsers = catchAsyncErrors(async (req, res, next) => {
   // const filteredUsers = new APIFeatures(User.find(), req.query).filter();
@@ -88,17 +87,26 @@ exports.getFilteredUsers = catchAsyncErrors(async (req, res, next) => {
     success: true,
     users,
   });
-} );
+});
 
 // Logout user         =>     /api/v1/logout
 exports.logout = catchAsyncErrors(async (req, res, next) => {
-  res.cookie("token", null, {
-    expires: new Date(Date.now()),
-    httpOnly: true,
-  });
+  // res.cookie("token", null, {
+  //   expires: new Date(Date.now()),
+  //   httpOnly: true,
+  // });
+  // res.status(200).json({
+    //   success: true,
+    //   message: "Logged out",
+    // });
+    const options = {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    };
+    console.log("Logged out");
 
-  res.status(200).json({
+  res.status(200).cookie("token", null, options).json({
     success: true,
-    message: "Logged out",
+    message: "Logged out !!",
   });
 });
