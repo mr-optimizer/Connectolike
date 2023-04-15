@@ -1,3 +1,67 @@
+:root{
+  --color-primary: #1a059c;
+  --color-primary-light: #1a059c;
+  --color-primary-dark: #1a059c;
+  --color-secondary: #e7b205;
+  --color-secondary-light: #1a059c;
+  --color-secondary-dark: #1a059c;
+
+  --bnt-shadow: 4px 4px 8px #00000033;
+}
+html {
+  font-size: 62.5%;
+
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 68.75em) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media screen and (max-width: 62.5em) {
+  html {
+    font-size: 65%;
+  }
+}
+
+@media screen and (max-width: 56.25em) {
+  html {
+    font-size: 62%;
+  }
+}
+
+@media screen and (max-width: 39.5em) {
+  html {
+    font-size: 57%;
+  }
+}
+
+@media screen and (max-width: 31.25em) {
+  html {
+    font-size: 55%;
+  }
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
 .spinner-parent {
   display: flex;
   justify-content: center;
@@ -44,5 +108,12 @@
 }
 .u-margin-top-huge {
   margin-top: 9rem !important;
+}
+
+
+/* MUI classes */
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+  font-size: 1.5rem !important;
 }
 

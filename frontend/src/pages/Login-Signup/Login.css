@@ -59,19 +59,3 @@ button{
 .login__img{
     height: 60rem;
 }
-
-
-
-@media screen and (max-width: 550px){
-    .login__content__btns{
-        gap: 2.5rem;
-    }
-
-    .reveal{
-        left: 16rem;
-    }
-
-    .login__content{
-        padding: 2rem 2rem;
-    }
-}

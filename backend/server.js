@@ -30,7 +30,7 @@ const server = app.listen(process.env.PORT, () => {
   );
 });
 
-// Handle unhaldled Promise rejection (ex- unexpected change in mongoDB server url)
+// Handle unhandled Promise rejection (ex- unexpected change in mongoDB server url)
 process.on("unhandledRejection", (err) => {
   console.log(`ERROR: ${err.message}`);
   console.log("Shuting down the server due to Unhandled Promise rejection");

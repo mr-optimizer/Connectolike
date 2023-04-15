@@ -12,9 +12,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 
-
 const MyProfile = () => {
-  const defaultAvatar = "https://res.cloudinary.com/saienterprises/image/upload/v1681550747/avatar_qepxas.png";
+  const defaultAvatar =
+    "https://res.cloudinary.com/saienterprises/image/upload/v1681550747/avatar_qepxas.png";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -106,17 +106,21 @@ const MyProfile = () => {
   useEffect(() => {
     if (!user) {
       const isAuthenticatedUser = async () => {
-        try {
-          const response = await axios.get("/api/v1/isAuthenticatedUser");
-          if (response.data.success) {
-            dispatch(setUser(response.data.user));
-            return true;
-          } else {
-            return false;
-          }
-        } catch (error) {
-          return false;
+        // try {
+        //   const response = await axios.get("/api/v1/isAuthenticatedUser");
+        //   if (response.data.success) {
+        //     dispatch(setUser(response.data.user));
+        //     return true;
+        //   } else {
+        //     return false;
+        //   }
+        // } catch (error) {
+        //   return false;
+        // }
+        if (localStorage.getItem("token")) {
+          return true;
         }
+        return false;
       };
       if (isAuthenticatedUser() === false) {
         navigate("/login");

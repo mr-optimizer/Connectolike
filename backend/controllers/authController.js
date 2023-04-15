@@ -84,7 +84,6 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
       public_id: req.user.id + 1,
     });
 
-
     // Generate
     const url = cloudinary.url(req.user.id + 1, {
       width: 100,
@@ -96,7 +95,7 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
     console.log(url);
     newUserData.avatar = {
       public_id: req.user.id + 1,
-      url: url
+      url: url,
     };
   }
 

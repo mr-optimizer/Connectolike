@@ -1,5 +1,6 @@
 import React from "react";
 import "./DiscoverCard.css";
+import { Link } from "react-router-dom";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -51,39 +52,39 @@ const DiscoverCard = (props) => {
       <div className="discover__card__social">
         <div className="discover__card__social__public">
           {props.facebook && (
-            <a href={props.facebook} target="_blank">
+            <Link to={props.facebook} target="_blank">
               {" "}
               <FacebookIcon
                 className="discover__card__social__public--icons"
                 style={{ fontSize: "3rem" }}
               />
-            </a>
+            </Link>
           )}
           {props.linkedIn && (
-            <a href={props.linkedIn} target="_blank">
+            <Link to={props.linkedIn} target="_blank">
               {" "}
               <LinkedInIcon
                 className="discover__card__social__public--icons"
                 style={{ fontSize: "3rem" }}
               />
-            </a>
+            </Link>
           )}
           {props.portfolio && (
-            <a href={props.portfolio} target="_blank">
+            <Link to={props.portfolio} target="_blank">
               <LanguageIcon
                 className="discover__card__social__public--icons"
                 style={{ fontSize: "3rem" }}
               />
-            </a>
+            </Link>
           )}
           {props.github && (
-            <a href={props.github} target="_blank">
+            <Link to={props.github} target="_blank">
               {" "}
               <GitHubIcon
                 className="discover__card__social__public--icons"
                 style={{ fontSize: "3rem" }}
               />
-            </a>
+            </Link>
           )}
         </div>
         {props.whatsApp && (

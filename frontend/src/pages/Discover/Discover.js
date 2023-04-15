@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Discover.css";
 import DiscoverCard from "./DiscoverCard";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -13,10 +11,6 @@ import Checkbox from "@mui/material/Checkbox";
 import { toast } from "react-hot-toast";
 
 const Discover = () => {
-  const { user } = useSelector((state) => state.user);
-
-  const navigate = useNavigate();
-
   const [uiux, setUIUX] = useState(false);
   const [webDev, setWebDev] = useState(false);
   const [androidDev, setAndroidDev] = useState(false);
@@ -59,11 +53,8 @@ const Discover = () => {
       } else {
         setFilteredUsers(data.users);
       }
-      console.log(data.users);
     } catch (error) {}
   };
-
-  useEffect(() => {}, [user, navigate]);
   return (
     <div className="discover">
       <div className="discover__body">
@@ -256,11 +247,7 @@ const Discover = () => {
                     control={<Radio />}
                     label="Pass Out"
                   />
-                  <FormControlLabel
-                    value={0}
-                    control={<Radio />}
-                    label="Any"
-                  />
+                  <FormControlLabel value={0} control={<Radio />} label="Any" />
                 </RadioGroup>
               </FormControl>
             </div>

@@ -1,10 +1,9 @@
+import "./Header.css";
 import { React, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
-import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../redux/userSlice";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { setUser } from "../redux/userSlice";
 import { Avatar } from "@mui/material";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -25,8 +24,10 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let location = useLocation();
+  let token = localStorage.getItem("token");
   const logoutHandler = async () => {
     localStorage.removeItem("token");
+    token = null;
     try {
       const response = await axios.get("/api/v1/logout");
       if (response.data.success) {
@@ -40,6 +41,7 @@ const Header = () => {
   };
 
   useEffect(() => {
+    console.log("change");
     if (
       location.pathname === "/discover" ||
       location.pathname === "/my-profile"
@@ -57,9 +59,15 @@ const Header = () => {
           return false;
         }
       };
-      if (isAuthenticatedUser() === false || localStorage.getItem("token") === null) {
-        navigate("/login");
+      if (!user) {
+        if (
+          isAuthenticatedUser() === false ||
+          localStorage.getItem("token") === null
+        ) {
+          navigate("/login");
+        }
       }
+      
       if (location.pathname === "/my-profile") setActivePage("My Profile");
       setActivePage("Explore");
     } else if (location.pathname === "/faq") setActivePage("FAQs");
@@ -124,7 +132,7 @@ const Header = () => {
         </Link>
       </ul>
 
-      {user ? (
+      {user && token ? (
         <div className="my__profile__btn">
           <div
             style={{ cursor: "pointer" }}

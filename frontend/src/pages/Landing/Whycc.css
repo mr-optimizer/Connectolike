@@ -14,8 +14,6 @@
     color: azure;
     font-size: 1.7rem;
     border-radius: .4rem;
-    /* background-color: rgb(63, 63, 63); */
-
     background-color: rgb(26, 5, 156);
 }
 
@@ -34,8 +32,7 @@
     font-size: 3rem;
     font-weight: 700;
     border-radius: .4rem;
-    background-color: rgb(149, 149, 149);
-    background-color: #e7b205;
+    background-color: var(--color-secondary);
 
 }
 
@@ -57,6 +54,5 @@
 
 .cont{
     display: flex;
-    /* justify-content: center; */
     align-items: baseline;
 }

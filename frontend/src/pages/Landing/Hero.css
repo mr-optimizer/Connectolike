@@ -50,19 +50,3 @@
         border-color: transparent;
     }
 }
-
-@media (max-width:1100px) {
-    .hero{
-    }
-}
-
-@media (max-width:780px) {
-    .hero{
-    }
-}
-
-@media (max-width:600px) {
-    .hero{
-        height: 100vh;
-    }
-}

@@ -29,7 +29,7 @@ const Login = () => {
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);
-        dispatch(setUser(response.data.user))
+        dispatch(setUser(response.data.user));
         localStorage.setItem("token", response.data.token);
         navigate("/discover");
       } else {
@@ -43,7 +43,11 @@ const Login = () => {
 
   return (
     <div className="login">
-      <img src="https://res.cloudinary.com/saienterprises/image/upload/v1681553375/login_1_rrb4xr.jpg" className="login__img" alt="login"></img>
+      <img
+        src="https://res.cloudinary.com/saienterprises/image/upload/v1681553375/login_1_rrb4xr.jpg"
+        className="login__img"
+        alt="login"
+      ></img>
       <form onSubmit={handleSubmit}>
         <div className="login__content">
           <h3>LOG IN</h3>

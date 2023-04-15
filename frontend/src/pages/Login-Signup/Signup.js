@@ -11,7 +11,6 @@ import "./Signup.css";
 import TextField from "@mui/material/TextField";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
 
-
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -60,7 +59,11 @@ const Signup = () => {
 
   return (
     <div className="signup">
-      <img className="signup__img" src="https://res.cloudinary.com/saienterprises/image/upload/v1681553375/signup_1_1_oouwf9.jpg" alt="signup"></img>
+      <img
+        className="signup__img"
+        src="https://res.cloudinary.com/saienterprises/image/upload/v1681553375/signup_1_1_oouwf9.jpg"
+        alt="signup"
+      ></img>
       <form onSubmit={handleSubmit}>
         <div className="signup__content">
           <h3 className="signup__title">SIGN UP</h3>
@@ -131,12 +134,14 @@ const Signup = () => {
               minLength="8"
               type="password"
             />
-            <FormControl sx={{
+            <FormControl
+              sx={{
                 width: { xs: 300, sm: 400, md: 400 },
                 "& .MuiInputBase-root": {
                   height: 50,
                 },
-              }}>
+              }}
+            >
               <InputLabel id="company-label">Company</InputLabel>
               <Select
                 labelId="company-label"
@@ -220,7 +225,7 @@ const Signup = () => {
               <input
                 id="skillUi"
                 name="skill"
-                value="ui/ux"
+                value={uiux}
                 type="checkbox"
                 onChange={() => setUIUX(true)}
               />
@@ -228,7 +233,7 @@ const Signup = () => {
               <input
                 id="skillWeb"
                 name="skill"
-                value="Web-Dev"
+                value={webDev}
                 type="checkbox"
                 onChange={() => setWebDev(true)}
               />
@@ -236,7 +241,7 @@ const Signup = () => {
               <input
                 id="skillAndroid"
                 name="skill"
-                value="Android-Dev"
+                value={androidDev}
                 type="checkbox"
                 onChange={() => setAndroidDev(true)}
               />
@@ -244,7 +249,7 @@ const Signup = () => {
               <input
                 id="skillBlockchain"
                 name="skill"
-                value="Blockchain"
+                value={blockchain}
                 type="checkbox"
                 onChange={() => setBlockchain(true)}
               />
@@ -252,7 +257,7 @@ const Signup = () => {
               <input
                 id="skillEthical"
                 name="skill"
-                value="Ethical-Hacking"
+                value={ethicalHacking}
                 type="checkbox"
                 onChange={() => setEthicalHacking(true)}
               />
@@ -260,7 +265,7 @@ const Signup = () => {
               <input
                 id="skillSoftware"
                 name="skill"
-                value="Software-Testing"
+                value={softwareTesting}
                 type="checkbox"
                 onChange={() => setSoftwareTesting(true)}
               />
