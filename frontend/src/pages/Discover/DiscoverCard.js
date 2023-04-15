@@ -5,17 +5,25 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import LanguageIcon from "@mui/icons-material/Language";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import dp1 from "../../images/pic1.png";
 import Skills from "./Skills";
 
 const DiscoverCard = (props) => {
+  const defaultAvatar =
+    "https://res.cloudinary.com/saienterprises/image/upload/v1681550747/avatar_qepxas.png";
   const privateMessageButtonHandler = () => {
-    window.open(`https://api.whatsapp.com/send?phone=${props.whatsApp}`, "_blank");
+    window.open(
+      `https://api.whatsapp.com/send?phone=${props.whatsApp}`,
+      "_blank"
+    );
   };
   return (
     <div className="discover__card">
       <div className="discover__card__image">
-        <img src={dp1} alt="display_img" className="discover__card__img" />
+        <img
+          src={props.src ? props.src : defaultAvatar}
+          alt="display_img"
+          className="discover__card__img"
+        />
       </div>
 
       <div className="discover__card__infos">
@@ -52,7 +60,7 @@ const DiscoverCard = (props) => {
             </a>
           )}
           {props.linkedIn && (
-            <a href={props.linkedIn } target="_blank">
+            <a href={props.linkedIn} target="_blank">
               {" "}
               <LinkedInIcon
                 className="discover__card__social__public--icons"
@@ -61,7 +69,7 @@ const DiscoverCard = (props) => {
             </a>
           )}
           {props.portfolio && (
-            <a href={props.portfolio }  target="_blank">
+            <a href={props.portfolio} target="_blank">
               <LanguageIcon
                 className="discover__card__social__public--icons"
                 style={{ fontSize: "3rem" }}

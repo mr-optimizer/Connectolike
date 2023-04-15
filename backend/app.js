@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
-//const fileUpload = require("express-fileupload");
+const fileUpload = require("express-fileupload");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
@@ -16,7 +16,7 @@ dotenv.config({ path: "./config/config.env" });
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(cookieParser());
-//app.use(fileUpload());
+app.use(fileUpload());
 
 const userRoutes = require("./routes/auth");
 

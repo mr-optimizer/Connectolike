@@ -1,24 +1,11 @@
 const User = require("../models/user");
 const ErrorHandler = require("../utils/errorHandlers");
 const catchAsyncErrors = require("./../middleWares/catchAsyncErrors");
-const crypto = require("crypto");
-const jwt = require("jsonwebtoken");
 const sendToken = require("../utils/jwtToken");
-const sendEmail = require("../utils/sendEmail");
-const APIFeatures = require("../utils/apiFeatures");
+const cloudinary = require("cloudinary").v2;
 
 // Register a user     => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  // if(req.body.avatar === undefined){
-  //     if(images === undefined){
-  //       return next(new ErrorHandler("Please upload a profile picture", 500));
-  //     }
-  //   }
-  //   const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-  //     folder: "users",
-  //     width: 150,
-  //     crop: "scale",
-  //   });
   const user = await User.create({
     ...req.body,
   });
@@ -63,7 +50,57 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
   if (!req.body.id) {
     return next(new ErrorHandler("Please enter a valid id", 500));
   }
-  const user = await User.findByIdAndUpdate(req.user.id, req.body, {
+
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    phone: req.body.phone,
+    institute: req.body.institute,
+    company: req.body.company,
+    branch: req.body.branch,
+    year: req.body.year,
+    semester: req.body.semester,
+    instagram: req.body.instagram,
+    linkedIn: req.body.linkedIn,
+    github: req.body.github,
+    facebook: req.body.facebook,
+    portfolio: req.body.portfolio,
+    uiux: req.body.uiux,
+    webDev: req.body.webDev,
+    androidDev: req.body.androidDev,
+    blockchain: req.body.blockchain,
+    ethicalHacking: req.body.ethicalHacking,
+    softwareTesting: req.body.softwareTesting,
+  };
+  if (req.body.avatar) {
+    // delete
+    const tempUser = await User.findById(req.user.id);
+    const image_id = tempUser?.avatar?.public_id;
+    if (image_id) await cloudinary.uploader.destroy(image_id);
+
+    // upload
+    await cloudinary.uploader.upload(req.body.avatar, {
+      public_id: req.user.id + 1,
+    });
+
+
+    // Generate
+    const url = cloudinary.url(req.user.id + 1, {
+      width: 100,
+      height: 100,
+      Crop: "fill",
+    });
+
+    // The output url
+    console.log(url);
+    newUserData.avatar = {
+      public_id: req.user.id + 1,
+      url: url
+    };
+  }
+
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: true,

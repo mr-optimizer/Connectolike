@@ -291,6 +291,7 @@ const Discover = () => {
                 portfolio={person?.portfolio}
                 github={person?.github}
                 whatsApp={person?.whatsApp}
+                src={person?.avatar?.url}
               />
             );
           })}

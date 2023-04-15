@@ -1,22 +1,11 @@
 .my__profile{
     font-size: 1.7rem;
-    /* color: rgb(26, 5, 156); */
+    padding-top: 10rem;
 }
 
-.my__profile__images__and__buttons{
 
-}
-
-.cover__image{
-    /* padding: 0 1rem; */
-}
-.cover__img{
-    width: 100%;
-    height: 30vh;
-    border-radius: 6rem .4rem .4rem .4rem ;
-}
 .profile__container{
-    margin: -3rem 0 3rem;
+    margin:  0 3rem;
     padding: 0 3rem;
     display: flex;
     align-items: center;
@@ -31,6 +20,7 @@
 
 .profile__img{
     height: 12rem;
+    width: 12rem;
     border-radius: 100%;
 }
 
@@ -46,6 +36,10 @@
 .buttons{
     display: flex;
     gap: 1rem;
+}
+
+.cover__img__input{
+    width: 40rem;
 }
 
 .btn-cancle{
@@ -70,22 +64,23 @@
 }
 
 .personal__details, .professional__details, .social__details {
-    padding: 0 4rem;
-    margin: 3rem 0;
-    width: 65rem;
+    padding: 0 5rem;
+    margin: 6rem 0;
+    width: 85rem;
     
 }
 
 .personal__details__component, .professional__details__component, .social__details__component{
-    padding: 0 4rem;
+    
+    padding:4rem;
+    padding-left: 18rem;
     display: flex;
-    /* width: 100%; */
     flex-direction: column;
     gap: 2rem;
 }
 
 .heading__section{
-    font-size: 1.8rem;
+    font-size: 2.3rem;
 }
 .component{
     display: flex;
@@ -107,3 +102,4 @@
     align-items: center;
     font-size: 1.3rem;
 }
+

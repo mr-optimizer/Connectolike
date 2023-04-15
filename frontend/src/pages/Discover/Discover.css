@@ -14,7 +14,7 @@
 
 .discover__body{
     display: flex;
-    gap: 6rem;
+    gap: 5rem;
 }
 
 .left-contents{
@@ -57,6 +57,6 @@
     padding: 3rem 0rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 5rem;
     border-radius: .2rem;
 }

@@ -1,6 +1,6 @@
-.discover__card{
+.discover__card {
     width: 32rem;
-    height: max-content;
+    min-height: 25rem;
     padding: 1.8rem;
     display: flex;
     flex-direction: column;
@@ -11,35 +11,41 @@
     box-shadow: 0px 0px 8px rgba(0, 0, 0, .2);
 }
 
-.discover__card__infos{
+.discover__card__infos {
     margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: first baseline;
 }
+.discover__card__img{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 100%;
+}
 
-.discover__card__infos__name{
+.discover__card__infos__name {
     margin: 0;
     font-weight: 600;
     font-size: 1.8rem;
 }
 
-.discover__card__infos--branch__sem{
+.discover__card__infos--branch__sem {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-.discover__card__infos--branch{
+.discover__card__infos--branch {
     margin: 0;
     font-weight: 500;
 }
 
-.discover__card__infos--sem{
+.discover__card__infos--sem {
     margin: 0;
     font-weight: 500;
 }
-.discover__card__skills{
+
+.discover__card__skills {
     display: flex;
     flex-wrap: wrap;
     gap: .6rem;
@@ -47,33 +53,34 @@
     justify-content: flex-start;
 }
 
-.discover__card__social{
+.discover__card__social {
     margin-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.discover__card__social__public{
+.discover__card__social__public {
     display: flex;
     gap: 1rem;
 }
 
-.discover__card__social__public a{
+.discover__card__social__public a {
     color: black;
 }
 
-.discover__card__social__public--icons{
+.discover__card__social__public--icons {
     cursor: pointer;
-    
+
 }
-.discover__card__social__public--icons :hover{
+
+.discover__card__social__public--icons :hover {
 
     color: rgb(26, 5, 156);
-    
+
 }
 
-.discover__card__social__private--message{
+.discover__card__social__private--message {
     padding: .7rem 1.4rem;
     display: flex;
     align-items: center;
@@ -84,4 +91,3 @@
     border-radius: 10rem;
     color: white;
 }
-

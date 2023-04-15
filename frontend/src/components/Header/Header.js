@@ -5,6 +5,7 @@ import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/userSlice";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Avatar } from "@mui/material";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -121,10 +122,12 @@ const Header = () => {
       {user ? (
         <div className="my__profile__btn">
           <div style={{cursor: "pointer"}} className="d-flex" onClick={() => navigate("/my-profile")}>
-            <AccountCircleIcon
-              style={LogoStyle}
+            <Avatar
+              sx={{ width: 32, height: 32 }}
+              alt="dp"
+              src={user?.avatar.url}
             />
-            <div > {user?.name}</div>
+            <div className="user__name" > {user?.name}</div>
           </div>
 
           <button className="cta-header--logout" onClick={logoutHandler}>
