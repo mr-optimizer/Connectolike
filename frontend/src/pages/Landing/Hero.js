@@ -2,7 +2,6 @@ import React from "react";
 import "./Hero.css";
 import { useTypewriter } from "react-simple-typewriter";
 import { useNavigate } from "react-router-dom";
-import HeroImg from "../../images/Landing/hero.jpg";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -31,7 +30,7 @@ const Hero = () => {
         </button>
       </div>
       <div className="hero__image__container">
-        <img src={HeroImg} alt="Hero" className="hero_image" />
+        <img src="https://res.cloudinary.com/saienterprises/image/upload/v1681552646/hero_byvoze.jpg" alt="Hero" className="hero_image" />
       </div>
     </div>
   );

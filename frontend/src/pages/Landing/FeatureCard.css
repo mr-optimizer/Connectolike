@@ -17,11 +17,11 @@
     list-style-type: '👉  ';
     padding: 1.5rem;
     margin: 1rem;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
 }
 
 .card_image{
-    height: 30rem;
+    height: 40rem;
     object-fit: cover;
     border-radius: 1rem;
 }

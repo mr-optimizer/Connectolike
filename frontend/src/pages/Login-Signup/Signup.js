@@ -11,7 +11,6 @@ import "./Signup.css";
 import TextField from "@mui/material/TextField";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
 
-import SignupImg from "../../images/Signup/signup.jpg";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -61,7 +60,7 @@ const Signup = () => {
 
   return (
     <div className="signup">
-      <img className="signup__img" src={SignupImg} alt="signup"></img>
+      <img className="signup__img" src="https://res.cloudinary.com/saienterprises/image/upload/v1681553375/signup_1_1_oouwf9.jpg" alt="signup"></img>
       <form onSubmit={handleSubmit}>
         <div className="signup__content">
           <h3 className="signup__title">SIGN UP</h3>

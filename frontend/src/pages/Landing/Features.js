@@ -1,9 +1,5 @@
 import React from "react";
 import FeatureCard from "./FeatureCard";
-import DoubtImg from "../../images/Landing/doubt.jpg";
-import ConnectionImg from "../../images/Landing/connection.jpg";
-import ShareResourcesImg from "../../images/Landing/share_resource.jpg";
-
 import "./Features.css";
 
 let features = [
@@ -16,7 +12,7 @@ let features = [
         "Collaborative opportunities: It can create opportunities for collaboration and networking. People can work together to achieve common goals or projects, and build relationships that can lead to future partnerships or collaborations.",
         "Social benefits: Sharing resources can also have social benefits, as it can bring people together and promote a sense of community.",
     ],
-    image: ShareResourcesImg,
+    image: "https://res.cloudinary.com/saienterprises/image/upload/v1681552646/share_resource_lu721s.jpg",
   },
   {
     title: "Doubts Resolution",
@@ -27,17 +23,17 @@ let features = [
         "Improved learning: Doubts and questions can indicate areas where you need more information or clarification. By getting your doubts resolved, you can deepen your understanding and improve your learning.",
         "Increased confidence: When you have doubts, it can undermine your confidence in yourself and your abilities. By resolving your doubts, you can increase your confidence and feel more capable and empowered.",
     ],
-    image: DoubtImg,
+    image: "https://res.cloudinary.com/saienterprises/image/upload/v1681552646/doubt_hfsnon.jpg",
   },
   {
-    title: "Make Relevent Connection",
+    title: "Make Relevant Connection",
     points :[
         "Get connected with like minded people.",
         "Professional networking: This will help you learn about job opportunities, get introduced to key contacts in your industry, and expand your knowledge and skills..",
         "Improved communication skills: This helps you in improving your communication skills, including your ability to listen, ask questions, and communicate your ideas effectively.",
         "Increased self-confidence: When you make connections and build relationships, you are building your own support system. This can help you feel more confident and empowered, knowing that you have people you can turn to for support and advice.",
     ],
-    image: ConnectionImg,
+    image: "https://res.cloudinary.com/saienterprises/image/upload/v1681552646/connection_z8bopl.jpg",
   },
 
 ];

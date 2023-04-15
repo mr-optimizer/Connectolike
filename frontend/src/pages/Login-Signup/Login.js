@@ -6,8 +6,6 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
-
-import LoginImg from "../../images/Login/login.jpg";
 import { setUser } from "../../redux/userSlice";
 
 const Login = () => {
@@ -45,7 +43,7 @@ const Login = () => {
 
   return (
     <div className="login">
-      <img src={LoginImg} className="login__img" alt="login"></img>
+      <img src="https://res.cloudinary.com/saienterprises/image/upload/v1681553375/login_1_rrb4xr.jpg" className="login__img" alt="login"></img>
       <form onSubmit={handleSubmit}>
         <div className="login__content">
           <h3>LOG IN</h3>

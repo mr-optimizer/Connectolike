@@ -17,17 +17,15 @@ const LogoStyle = {
 
 const brandNameStyle = {
   cursor: "pointer",
-}
+};
 
 const Header = () => {
   const { user } = useSelector((state) => state.user);
-
-  // const [authenticatedUser, setAuthenticatedUser] = useState(false);
   const [activePage, setActivePage] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let location = useLocation();
-  const logoutHandler = async() => {
+  const logoutHandler = async () => {
     localStorage.removeItem("token");
     try {
       const response = await axios.get("/api/v1/logout");
@@ -41,40 +39,47 @@ const Header = () => {
     }
   };
 
-
   useEffect(() => {
-    if (location.pathname === "/discover" || location.pathname === '/my-profile') {
-      if (!user) {
-        const isAuthenticatedUser = async () => {
-          try {
-            const response = await axios.get("/api/v1/isAuthenticatedUser");
-            if (response.data.success) {
-              dispatch(setUser(response.data.user));
-              return true;
-            } else {
-              return false;
-            }
-          } catch (error) {
+    if (
+      location.pathname === "/discover" ||
+      location.pathname === "/my-profile"
+    ) {
+      const isAuthenticatedUser = async () => {
+        try {
+          const response = await axios.get("/api/v1/isAuthenticatedUser");
+          if (response.data.success) {
+            dispatch(setUser(response.data.user));
+            return true;
+          } else {
             return false;
           }
-        };
-        if (isAuthenticatedUser() === false) {
-          navigate("/login");
+        } catch (error) {
+          return false;
         }
+      };
+      if (isAuthenticatedUser() === false || localStorage.getItem("token") === null) {
+        navigate("/login");
       }
+      if (location.pathname === "/my-profile") setActivePage("My Profile");
       setActivePage("Explore");
     } else if (location.pathname === "/faq") setActivePage("FAQs");
     else if (location.pathname === "/doubts") setActivePage("Doubts");
     else if (location.pathname === "/about") setActivePage("About");
-    else if (location.pathname === "/my-profile") setActivePage("My Profile");
     else if (location.pathname === "/") setActivePage("Home");
   }, [location.pathname, navigate, dispatch, user]);
 
   return (
     <div className="header">
-      <div className="d-flex" onClick={(e)=>{navigate('/')}}>
+      <div
+        className="d-flex"
+        onClick={(e) => {
+          navigate("/");
+        }}
+      >
         <IntegrationInstructionsIcon style={LogoStyle} />
-        <h2 className="brand__name" style={brandNameStyle}>&nbsp; Code Companion</h2>
+        <h2 className="brand__name" style={brandNameStyle}>
+          &nbsp; Code Companion
+        </h2>
       </div>
       <ul className="nav__menu">
         <Link
@@ -121,13 +126,17 @@ const Header = () => {
 
       {user ? (
         <div className="my__profile__btn">
-          <div style={{cursor: "pointer"}} className="d-flex" onClick={() => navigate("/my-profile")}>
+          <div
+            style={{ cursor: "pointer" }}
+            className="d-flex"
+            onClick={() => navigate("/my-profile")}
+          >
             <Avatar
               sx={{ width: 32, height: 32 }}
               alt="dp"
               src={user?.avatar.url}
             />
-            <div className="user__name" > {user?.name}</div>
+            <div className="user__name"> {user?.name}</div>
           </div>
 
           <button className="cta-header--logout" onClick={logoutHandler}>
