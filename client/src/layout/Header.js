@@ -86,7 +86,7 @@ const Header = () => {
       >
         <IntegrationInstructionsIcon style={LogoStyle} />
         <h2 className="brand__name" style={brandNameStyle}>
-          &nbsp; Code Companion
+          &nbsp; ConnectoLike
         </h2>
       </div>
       <ul className="nav__menu">

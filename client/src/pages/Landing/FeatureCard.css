@@ -16,8 +16,12 @@
 .card__list{
     list-style-type: '👉  ';
     padding: 1.5rem;
-    margin: 1rem;
+    margin: 1.2rem;
     font-size: 1.6rem;
+}
+
+.card__list__item{
+    margin-bottom: 1rem;
 }
 
 .card_image{

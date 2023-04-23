@@ -1,4 +1,6 @@
 .features{
+    letter-spacing: 0.1rem;
+    line-height: 1.8rem;
     padding: 0rem 7rem 5rem 7rem;
     display: flex;
     flex-direction: column;

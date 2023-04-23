@@ -8,7 +8,7 @@ const FeatureCard = (props) => {
         <h5 className="card__heading">{props.title}</h5>
         <ul className="card__list">
             {props.description.map((point, index) => (
-                <li key={index} className=" card__list__item">{point}</li>
+                <li key={index} className="card__list__item">{point}</li>
             ))}
         </ul>
       </div>

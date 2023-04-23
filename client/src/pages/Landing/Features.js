@@ -17,7 +17,7 @@ let features = [
   {
     title: "Doubts Resolution",
     points :[
-        "Ask your doubts and get them answered by the community.",
+        // "Ask your doubts and get them answered by the community.",
         "Increased clarity: When your doubts are resolved, you gain a clearer understanding of the concept. This clarity can help you make better decisions and take more informed actions.",
         "Reduced anxiety: Uncertainty and doubt can create anxiety and stress. When your doubts are resolved, you can feel a sense of relief and reduce your anxiety levels.",
         "Improved learning: Doubts and questions can indicate areas where you need more information or clarification. By getting your doubts resolved, you can deepen your understanding and improve your learning.",
