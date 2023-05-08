@@ -73,10 +73,13 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
     ethicalHacking: req.body.ethicalHacking,
     softwareTesting: req.body.softwareTesting,
   };
+  // console.log(req.body);
   if (req.body.avatar) {
     // delete
     const tempUser = await User.findById(req.user.id);
+
     const image_id = tempUser?.avatar?.public_id;
+    console.log(image_id);
     if (image_id) await cloudinary.uploader.destroy(image_id);
 
     // upload

@@ -122,7 +122,7 @@ const Header = () => {
             <Avatar
               sx={{ width: 32, height: 32 }}
               alt="dp"
-              src={user?.avatar.url}
+              src={user?.avatar?.url}
             />
             <div className="user__name"> {user?.name}</div>
           </div>

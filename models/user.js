@@ -28,9 +28,12 @@ const userSchema = new mongoose.Schema({
     maxLength: [10, "Your phone number cannot exceed 11 characters"],
   },
   avatar: {
-    type: Object,
-    url: String,
-    public_id: String,
+    public_id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
   },
   institute: {
     type: String,
