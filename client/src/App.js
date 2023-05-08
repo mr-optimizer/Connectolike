@@ -14,9 +14,29 @@ import Footer from "./layout/Footer";
 import MyProfile from "./pages/My-Profile/MyProfile";
 import FAQs from "./pages/FAQs/FAQs";
 import Doubts from "./pages/Doubts/Doubts";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/userSlice";
+import axios from "axios";
 
 function App() {
   const { loading } = useSelector((state) => state.alert);
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!user) {
+      const fetchUser = async () => {
+        try {
+          const response = await axios.get("/api/v1/isAuthenticatedUser");
+          if (response.data.success) {
+            dispatch(setUser(response.data.user));
+          }
+        } catch (error) {}
+      };
+      fetchUser();
+    }
+  }, [user, dispatch]);
+
   return (
     <Router>
       {loading && (

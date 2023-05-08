@@ -41,35 +41,15 @@ const Header = () => {
   };
 
   useEffect(() => {
-    console.log("change");
     if (
       location.pathname === "/discover" ||
       location.pathname === "/my-profile"
     ) {
-      const isAuthenticatedUser = async () => {
-        try {
-          const response = await axios.get("/api/v1/isAuthenticatedUser");
-          if (response.data.success) {
-            dispatch(setUser(response.data.user));
-            return true;
-          } else {
-            return false;
-          }
-        } catch (error) {
-          return false;
-        }
-      };
       if (!user) {
-        if (
-          isAuthenticatedUser() === false ||
-          localStorage.getItem("token") === null
-        ) {
-          navigate("/login");
-        }
+        navigate("/login");
       }
-      
       if (location.pathname === "/my-profile") setActivePage("My Profile");
-      setActivePage("Explore");
+      else setActivePage("Explore");
     } else if (location.pathname === "/faq") setActivePage("FAQs");
     else if (location.pathname === "/doubts") setActivePage("Doubts");
     else if (location.pathname === "/about") setActivePage("About");

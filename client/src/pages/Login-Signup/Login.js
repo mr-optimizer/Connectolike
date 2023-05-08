@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, } from "react";
 import "./Login.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
@@ -11,7 +11,8 @@ import { setUser } from "../../redux/userSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -40,6 +41,11 @@ const Login = () => {
       toast.error(error.response.data.message);
     }
   };
+  useEffect(() => {
+    if(user){
+      navigate("/discover");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="login">

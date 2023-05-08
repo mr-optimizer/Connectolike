@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -12,6 +12,7 @@ import TextField from "@mui/material/TextField";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
 
 const Signup = () => {
+  const {user} = useSelector((state) => state.user);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -56,6 +57,11 @@ const Signup = () => {
       toast.error(error.response.data.message);
     }
   };
+  useEffect(() => {
+    if(user){
+      navigate("/discover");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="signup">
