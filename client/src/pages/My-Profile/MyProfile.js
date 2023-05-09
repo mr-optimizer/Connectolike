@@ -22,7 +22,7 @@ const MyProfile = () => {
   const [institute, setInstitute] = useState("");
   const [company, setCompany] = useState("");
   const [branch, setBranch] = useState("");
-  const [year, setYear] = useState("");
+  const [year, setYear] = useState(1);
   const [semester, setSemester] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
   const [instagram, setInstagram] = useState("");
