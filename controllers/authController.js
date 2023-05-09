@@ -1,8 +1,9 @@
 const User = require("../models/user");
 const ErrorHandler = require("../utils/errorHandlers");
-const catchAsyncErrors = require("./../middleWares/catchAsyncErrors");
+const catchAsyncErrors = require("../middleWares/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
 const cloudinary = require("cloudinary").v2;
+const bcrypt = require("bcryptjs");
 
 // Register a user     => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -77,35 +78,28 @@ exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
   if (req.body.avatar) {
     // delete
     const tempUser = await User.findById(req.user.id);
-
+    console.log("tempUser", tempUser);
     const image_id = tempUser?.avatar?.public_id;
-    console.log(image_id);
+    console.log("image_id", image_id);
     if (image_id) await cloudinary.uploader.destroy(image_id);
 
     // upload
-    await cloudinary.uploader.upload(req.body.avatar, {
-      public_id: req.user.id + 1,
+    const res1 = await cloudinary.uploader.upload(req.body.avatar, {
+      folder: "users",
+      width: 150,
+      crop: "scale",
     });
-
-    // Generate
-    const url = cloudinary.url(req.user.id + 1, {
-      width: 100,
-      height: 100,
-      Crop: "fill",
-    });
-
-    // The output url
-    console.log(url);
     newUserData.avatar = {
-      public_id: req.user.id + 1,
-      url: url,
+      public_id: res1.public_id,
+      url: res1.secure_url,
     };
   }
+  newUserData.password = await bcrypt.hash(newUserData.password, 10);
 
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
   });
 
   if (!user) {
@@ -140,3 +134,4 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
     message: "Logged out !!",
   });
 });
+
