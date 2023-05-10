@@ -51,6 +51,7 @@ const Discover = () => {
       if (data.users.length === 0) {
         toast.error("No users found ");
       } else {
+        toast.success("Users found");
         setFilteredUsers(data.users);
       }
     } catch (error) {}

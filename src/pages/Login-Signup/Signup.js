@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import { hideLoading, showLoading } from "../../redux/alertSlice";
 
 const Signup = () => {
-  const {user} = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -34,7 +34,21 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const load = { name, email, phone, password, branch, sem, company };
+      const load = {
+        name,
+        email,
+        phone,
+        password,
+        branch,
+        sem,
+        company,
+        uiux,
+        webDev,
+        androidDev,
+        blockchain,
+        ethicalHacking,
+        softwareTesting,
+      };
 
       const config = {
         headers: {
@@ -58,7 +72,7 @@ const Signup = () => {
     }
   };
   useEffect(() => {
-    if(user){
+    if (user) {
       navigate("/discover");
     }
   }, [user, navigate]);

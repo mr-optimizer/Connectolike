@@ -22,7 +22,7 @@ const MyProfile = () => {
   const [institute, setInstitute] = useState("");
   const [company, setCompany] = useState("");
   const [branch, setBranch] = useState("");
-  const [year, setYear] = useState(1);
+  const [year, setYear] = useState("");
   const [semester, setSemester] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -65,17 +65,17 @@ const MyProfile = () => {
       formData.set("password", password);
       formData.set("avatar", avatar);
       formData.set("phone", phone);
-      formData.set("institute", institute);
+      if (institute) formData.set("institute", institute);
       formData.set("company", company);
       formData.set("branch", branch);
-      formData.set("year", year);
+      if (year) formData.set("year", year);
       formData.set("sem", semester);
-      formData.set("linkedIn", linkedIn);
-      formData.set("instagram", instagram);
-      formData.set("whatsApp", whatsApp);
-      formData.set("facebook", facebook);
-      formData.set("github", github);
-      formData.set("portfolio", portfolio);
+      if (linkedIn) formData.set("linkedIn", linkedIn);
+      if (instagram) formData.set("instagram", instagram);
+      if (whatsApp) formData.set("whatsApp", whatsApp);
+      if (facebook) formData.set("facebook", facebook);
+      if (github) formData.set("github", github);
+      if (portfolio) formData.set("portfolio", portfolio);
       formData.set("uiux", uiux);
       formData.set("webDev", webDev);
       formData.set("androidDev", androidDev);
@@ -355,7 +355,7 @@ const MyProfile = () => {
                     },
                   }}
                 >
-                  <InputLabel id="year-label">Sem</InputLabel>
+                  <InputLabel id="year-label">Year</InputLabel>
                   <Select
                     labelId="year-label"
                     id="year"
@@ -369,11 +369,7 @@ const MyProfile = () => {
                     <MenuItem value={2}>2</MenuItem>
                     <MenuItem value={3}>3</MenuItem>
                     <MenuItem value={4}>4</MenuItem>
-                    <MenuItem value={5}>5</MenuItem>
-                    <MenuItem value={6}>6</MenuItem>
-                    <MenuItem value={7}>7</MenuItem>
-                    <MenuItem value={8}>8</MenuItem>
-                    <MenuItem value={9}>Pass Out</MenuItem>
+                    <MenuItem value={5}>Pass Out</MenuItem>
                   </Select>
                 </FormControl>
               </div>
