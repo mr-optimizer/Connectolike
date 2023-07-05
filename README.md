@@ -1,70 +1,38 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![connectolike](https://github.com/mr-optimizer/Connectolike/assets/72147285/80a6361e-6136-4ad9-9f9a-d2df666e239a)
 
-## Available Scripts
+# ConnectoLike 
+The platform is designed to facilitate connections and networking among students and working professionals who share similar fields of interest. It serves as a hub where individuals can sign up and interact with peers who possess similar skill sets and interests.
 
-In the project directory, you can run:
+Our platform aims to provide a holistic learning experience, ensuring that students have access to the most relevant mates for them. Whether students are looking to improve their language proficiency, master data structures and algorithms, participate in hackathons, or work on practical projects, our platform is designed to support and guide them on their professional journey.
 
-### `npm start`
+## Features
+- **User Registration and Profiles:** The website allows users to create accounts and maintain profiles. This typically involves sharing information about their education, profession and skills.
+- **Search and Discovery:** Users can explore the platform and search for others who share similar fields of interest or possess the same skill sets. The platform may employ various search filters such as industry, expertise, company, or educational background to help users find relevant connections.
+- **Messaging and Communication:** Users can start communicating with their peers and exchange ideas, discuss projects, seek advice, or offer mentorship.
+- **Mentorship Opportunities:** The platform may also allow users to specifically search for mentors.
+- **Mobile-Friendly Design:** The website is designed to be responsive and accessible across various devices, including desktops, laptops, tablets, and smartphones. This ensures users can access and engage with the platform seamlessly from their preferred devices.
+- **User Support:** Users can contact the website's support team for assistance or to report any issues they encounter while using the platform.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack ⚒️
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*Client* 
+- React
+- Redux
+- MUI
+- CSS
+- JS
 
-### `npm test`
+*Server* 
+- Node
+- Express
+- MongoDB
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Feedback 💬
 
-### `npm run build`
+If you have any feedback, please fill out this form https://forms.gle/3xz6KEa6yrSKHzmR8
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Support 💁
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For support, email thealgorithmicpath@gmail.com or join our Slack channel.
