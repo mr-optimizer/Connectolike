@@ -27,7 +27,12 @@ function App() {
     if (!user) {
       const fetchUser = async () => {
         try {
-          const response = await axios.get("/api/v1/isAuthenticatedUser");
+          const response = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/api/v1/isAuthenticatedUser`,
+            {
+              withCredentials: true,
+            }
+          );
           if (response.data.success) {
             dispatch(setUser(response.data.user));
           }

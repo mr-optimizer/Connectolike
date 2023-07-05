@@ -29,7 +29,12 @@ const Header = () => {
     localStorage.removeItem("token");
     token = null;
     try {
-      const response = await axios.get("/api/v1/logout");
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/logout`,
+        {
+          withCredentials: true,
+        }
+      );
       if (response.data.success) {
         dispatch(setUser(null));
         toast.success("Logged out successfully");

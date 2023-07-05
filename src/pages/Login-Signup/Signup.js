@@ -14,6 +14,7 @@ import { hideLoading, showLoading } from "../../redux/alertSlice";
 const Signup = () => {
   const { user } = useSelector((state) => state.user);
   const [name, setName] = useState("");
+  const [userId, setUserId] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -36,6 +37,7 @@ const Signup = () => {
     try {
       const load = {
         name,
+        userId,
         email,
         phone,
         password,
@@ -54,9 +56,10 @@ const Signup = () => {
         headers: {
           "content-type": "application/json",
         },
+        withCredentials: true,
       };
       dispatch(showLoading());
-      const response = await axios.post("/api/v1/register", load, config);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/register`, load, config);
 
       dispatch(hideLoading());
       if (response.data.success) {
@@ -103,9 +106,10 @@ const Signup = () => {
               }}
               label="Name"
             />
+            <div className="d-flex">
             <TextField
               sx={{
-                width: { xs: 300, sm: 400, md: 400 },
+                width: { xs: 100, sm: 200, md: 200 },
                 "& .MuiInputBase-root": {
                   height: 50,
                 },
@@ -121,6 +125,23 @@ const Signup = () => {
               }}
               label="Email"
             />
+            <TextField
+              sx={{
+                width: { xs: 100, sm: 200, md: 200 },
+                "& .MuiInputBase-root": {
+                  height: 50,
+                },
+              }}
+              id="userId"
+              name="userId"
+              size="20"
+              value={userId}
+              onChange={(e) => {
+                setUserId(e.target.value);
+              }}
+              label="UserId"
+            />
+            </div>
             <TextField
               sx={{
                 width: { xs: 300, sm: 400, md: 400 },
@@ -179,7 +200,7 @@ const Signup = () => {
                 <MenuItem value={"GOOGLE"}>Google</MenuItem>
                 <MenuItem value={"MICROSOFT"}>Microsoft</MenuItem>
                 <MenuItem value={"PAYTM"}>Paytm</MenuItem>
-                <MenuItem value={"ANY"}>Any</MenuItem>
+                <MenuItem value={"ANY"}>Other</MenuItem>
               </Select>
             </FormControl>
             <div className="d-flex">
@@ -208,7 +229,7 @@ const Signup = () => {
                   <MenuItem value={"CHEM"}>Chemical</MenuItem>
                   <MenuItem value={"BIOTECH"}>Bio. Technology</MenuItem>
                   <MenuItem value={"TXT"}>Textile</MenuItem>
-                  <MenuItem value={"ANY"}>Any</MenuItem>
+                  <MenuItem value={"ANY"}>Other</MenuItem>
                 </Select>
               </FormControl>
               <FormControl

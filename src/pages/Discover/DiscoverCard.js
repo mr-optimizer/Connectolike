@@ -32,7 +32,7 @@ const DiscoverCard = (props) => {
           <p className="discover__card__infos__name">{props.name}</p>
         </div>
         <div className="discover__card__infos--branch__sem">
-          <p className="discover__card__infos--branch">{props.branch === 'ANY' ? "Other" : props.branch}</p>
+          <p className="discover__card__infos--branch">{"Branch:" } {props.branch === 'ANY' ? "Other" : props.branch}</p>
           <p className="discover__card__infos--sem">
             {props.sem < 9 ? <span>{props.sem}th Sem</span> : <span>Pass Out</span>}
             

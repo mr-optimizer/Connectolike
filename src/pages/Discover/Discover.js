@@ -42,9 +42,10 @@ const Discover = () => {
         headers: {
           "content-type": "application/json",
         },
+        withCredentials: true,
       };
       const { data } = await axios.post(
-        "/api/v1/filtered-users",
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/filtered-users`,
         query,
         config
       );

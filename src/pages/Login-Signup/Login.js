@@ -25,8 +25,9 @@ const Login = () => {
         headers: {
           "content-type": "application/json",
         },
+        withCredentials: true,
       };
-      const response = await axios.post("/api/v1/login", load, config);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/login`, load, config);
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);
@@ -65,10 +66,8 @@ const Login = () => {
                   height: 50,
                 },
               }}
-              type="email"
               id="email"
               name="email"
-              pattern=".+@globex\.com"
               size="30"
               value={email}
               onChange={(e) => {

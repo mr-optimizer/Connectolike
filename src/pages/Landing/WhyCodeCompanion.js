@@ -11,8 +11,8 @@ const Whycc = () => {
       <h1 className="section__head">Why Code Companion</h1>
       <div className="whycc__figures">
         <div className="whycc__figures-fig">
-          <sapn className="cont">
-            <span class="value" data-val="120">
+          <span className="cont">
+            <span className="value" data-val="120">
               <ScrollTrigger
                 onEnter={() => setCounterOn(true)}
                 onExit={() => setCounterOn(false)}
@@ -21,12 +21,12 @@ const Whycc = () => {
               </ScrollTrigger>
             </span>
             <span className="value-unit">K</span>
-          </sapn>
+          </span>
           <span className="fig-title">Doubts Solved</span>
         </div>
         <div className="whycc__figures-fig">
           <span className="cont">
-            <span class="value" data-val="120">
+            <span className="value" data-val="120">
               <ScrollTrigger
                 onEnter={() => setCounterOn(true)}
                 onExit={() => setCounterOn(false)}
@@ -40,7 +40,7 @@ const Whycc = () => {
         </div>
         <div className="whycc__figures-fig">
           <span className="cont">
-            <span class="value" data-val="120">
+            <span className="value" data-val="120">
               <ScrollTrigger
                 onEnter={() => setCounterOn(true)}
                 onExit={() => setCounterOn(false)}

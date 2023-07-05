@@ -18,7 +18,7 @@ const MyProfile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [institute, setInstitute] = useState("");
   const [company, setCompany] = useState("");
   const [branch, setBranch] = useState("");
@@ -62,7 +62,7 @@ const MyProfile = () => {
       formData.set("id", user._id);
       formData.set("name", name);
       formData.set("email", email);
-      formData.set("password", password);
+      // formData.set("password", password);
       formData.set("avatar", avatar);
       formData.set("phone", phone);
       if (institute) formData.set("institute", institute);
@@ -87,9 +87,10 @@ const MyProfile = () => {
         headers: {
           "content-type": "multipart/form-data;",
         },
+        withCredentials: true,
       };
       dispatch(showLoading());
-      const response = await axios.put("/api/v1/me/update", formData, config);
+      const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/v1/me/update`, formData, config);
 
       dispatch(hideLoading());
       if (response.data.success) {
@@ -230,7 +231,7 @@ const MyProfile = () => {
                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 />
               </div>
-              <div className="component">
+              {/* <div className="component">
                 <p className="component__lable">Password : </p>
                 <TextField
                   sx={{
@@ -249,7 +250,7 @@ const MyProfile = () => {
                   minLength="8"
                   type="password"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="professional__details">
